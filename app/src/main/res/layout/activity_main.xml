@@ -13,7 +13,8 @@
             android:textSize="30sp"
             android:textAlignment="center"
             android:textStyle="bold"
-            android:textColor="@android:color/holo_green_dark"/>
+            android:textColor="@color/colorPrimary"
+            android:layout_marginTop="30dp"/>
 
     <ImageView
             android:layout_width="match_parent"
@@ -30,9 +31,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/start_button"
-            android:layout_marginTop="50dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            style="@style/Widget.AppCompat.Button.Colored"/>
+            android:background="@drawable/rounded_button"/>
 
 </LinearLayout>
