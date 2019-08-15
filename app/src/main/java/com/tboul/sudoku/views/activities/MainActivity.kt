@@ -1,4 +1,4 @@
-package com.tboul.sudoku.activities
+package com.tboul.sudoku.views.activities
 
 import android.app.ActivityOptions
 import android.content.Intent
