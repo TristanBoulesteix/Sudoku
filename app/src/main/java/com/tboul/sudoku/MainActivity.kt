@@ -1,5 +1,6 @@
 package com.tboul.sudoku
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -18,7 +19,8 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.start_button).setOnClickListener {
             val gameActivity = Intent(this@MainActivity, GameActivity::class.java)
-            startActivity(gameActivity)
+            val transition = ActivityOptions.makeCustomAnimation(this@MainActivity, R.anim.transition_start, R.anim.trantion_end).toBundle()
+            startActivity(gameActivity, transition)
         }
     }
 }
