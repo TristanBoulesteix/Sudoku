@@ -9,8 +9,9 @@ import android.view.MotionEvent
 import android.view.View
 
 class Grid(context: Context, attrs: AttributeSet? = null) : View(context, attrs) {
-    val numColumns: Int = 9
-    val numRows: Int = 9
+    private val numColumns: Int = 9
+    private val numRows: Int = 9
+
     private var cellWidth: Int = 0
     private var cellHeight: Int = 0
     private val blackPaint = Paint()
