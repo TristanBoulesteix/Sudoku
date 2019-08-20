@@ -6,9 +6,11 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import com.tboul.sudoku.models.Grid
+import com.tboul.sudoku.utils.SUDOKU_SIZE
 
-class Grid(context: Context, attrs: AttributeSet? = null) : View(context, attrs) {
-    private val numColumns: Int = 9
+class GridView(context: Context, attrs: AttributeSet? = null) : View(context, attrs) {
+    private val numColumnsAndRows = SUDOKU_SIZE
     private val blackPaint = Paint().apply { style = Paint.Style.FILL_AND_STROKE }
     private val boldPaint = Paint().apply {
         style = Paint.Style.FILL_AND_STROKE
@@ -20,6 +22,7 @@ class Grid(context: Context, attrs: AttributeSet? = null) : View(context, attrs)
 
     init {
         calculateDimensions()
+        Grid()
     }
 
     override fun onSizeChanged(width: Int, height: Int, oldwidth: Int, oldheight: Int) {
@@ -28,8 +31,8 @@ class Grid(context: Context, attrs: AttributeSet? = null) : View(context, attrs)
     }
 
     private fun calculateDimensions() {
-        cellWidth = width / this.numColumns
-        cellHeight = height / this.numColumns
+        cellWidth = width / this.numColumnsAndRows
+        cellHeight = height / this.numColumnsAndRows
 
         invalidate()
     }
@@ -46,12 +49,8 @@ class Grid(context: Context, attrs: AttributeSet? = null) : View(context, attrs)
         canvas.drawLine(0f, 0f, width.toFloat(), 0F, boldPaint)
         canvas.drawLine(0f, 0F, 0F, height.toFloat(), boldPaint)
 
-        for (i in 1 until this.numColumns) {
-            val paint = if (i % 3 == 0) {
-                boldPaint
-            } else {
-                blackPaint
-            }
+        for (i in 1 until this.numColumnsAndRows) {
+            val paint = if (i % 3 == 0) boldPaint else blackPaint
             canvas.drawLine((i * cellWidth).toFloat(), 0f, (i * cellWidth).toFloat(), height.toFloat(), paint)
             canvas.drawLine(0f, (i * cellHeight).toFloat(), width.toFloat(), (i * cellHeight).toFloat(), paint)
         }
