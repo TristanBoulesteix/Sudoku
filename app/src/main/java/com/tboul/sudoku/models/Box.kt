@@ -1,3 +1,5 @@
 package com.tboul.sudoku.models
 
-class Box(value: Int)
+class Box(val value: Int) {
+    var visible = true
+}

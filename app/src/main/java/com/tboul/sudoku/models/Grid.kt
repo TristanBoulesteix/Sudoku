@@ -5,7 +5,7 @@ import kotlin.math.floor
 import kotlin.math.sqrt
 
 class Grid {
-    private val sudokuComponents = arrayOf<Array<Box>>()
+    private var sudokuGrid: Array<Array<Box>> = arrayOf()
 
     init {
         val grid = GridFactory().grid
@@ -17,7 +17,24 @@ class Grid {
                 line += Box(grid[i][j])
             }
 
-            sudokuComponents += line
+            sudokuGrid += line
+        }
+
+        val randNum = { x: Int -> floor((Math.random() * x + 1)).toInt() }
+
+        var count = 10
+
+        while (count != 0) {
+            val cellId = randNum(SUDOKU_SIZE * SUDOKU_SIZE)
+
+            val i = cellId / SUDOKU_SIZE
+            var j = cellId % 9
+            if (j != 0) j--
+
+            if (!sudokuGrid[i][j].visible) {
+                count--
+                sudokuGrid[i][j].visible = false
+            }
         }
     }
 
@@ -50,7 +67,7 @@ class Grid {
         private fun fillRemaining(x: Int, y: Int): Boolean {
             var i = x
             var j = y
-            //  System.out.println(i+" "+j);
+
             if (j >= numColumnsAndRows && i < numColumnsAndRows - 1) {
                 i += 1
                 j = 0
