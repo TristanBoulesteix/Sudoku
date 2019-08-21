@@ -21,8 +21,8 @@ class GridView(context: Context, attrs: AttributeSet? = null) : View(context, at
     private var cellHeight: Int = 0
 
     init {
-        calculateDimensions()
         Grid()
+        calculateDimensions()
     }
 
     override fun onSizeChanged(width: Int, height: Int, oldwidth: Int, oldheight: Int) {
@@ -51,8 +51,20 @@ class GridView(context: Context, attrs: AttributeSet? = null) : View(context, at
 
         for (i in 1 until this.numColumnsAndRows) {
             val paint = if (i % 3 == 0) boldPaint else blackPaint
-            canvas.drawLine((i * cellWidth).toFloat(), 0f, (i * cellWidth).toFloat(), height.toFloat(), paint)
-            canvas.drawLine(0f, (i * cellHeight).toFloat(), width.toFloat(), (i * cellHeight).toFloat(), paint)
+            canvas.drawLine(
+                (i * cellWidth).toFloat(),
+                0f,
+                (i * cellWidth).toFloat(),
+                height.toFloat(),
+                paint
+            )
+            canvas.drawLine(
+                0f,
+                (i * cellHeight).toFloat(),
+                width.toFloat(),
+                (i * cellHeight).toFloat(),
+                paint
+            )
         }
     }
 }

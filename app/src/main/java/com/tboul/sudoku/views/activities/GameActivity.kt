@@ -8,7 +8,7 @@ import com.tboul.sudoku.R
 import com.tboul.sudoku.views.GridView
 
 class GameActivity : AppCompatActivity() {
-    private val grid by lazy { GridView(this) }
+    private val gridView by lazy { GridView(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +17,6 @@ class GameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_game)
 
         val gridZone = findViewById<FrameLayout>(R.id.sudoku)
-        gridZone.addView(grid)
+        gridZone.addView(gridView)
     }
 }
