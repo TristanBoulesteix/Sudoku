@@ -5,10 +5,11 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Window
 import android.widget.FrameLayout
 import com.tboul.sudoku.R
+import com.tboul.sudoku.models.Grid
 import com.tboul.sudoku.views.GridView
 
 class GameActivity : AppCompatActivity() {
-    private val gridView by lazy { GridView(this) }
+    private val gridView by lazy { GridView(Grid(), this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

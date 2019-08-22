@@ -7,19 +7,6 @@ import kotlin.math.floor
 class Grid {
     private var sudokuGrid: Array<Array<Box>> = arrayOf()
 
-    val sudokuAsList: MutableList<Int>
-        get() {
-            val list = mutableListOf<Int>()
-
-            for (boxes in sudokuGrid) {
-                for (box in boxes) {
-                    list.add(box.value)
-                }
-            }
-
-            return list
-        }
-
     init {
         val grid = GridFactory().grid
 
@@ -49,5 +36,9 @@ class Grid {
                 sudokuGrid[i][j].visible = false
             }
         }
+    }
+
+    operator fun get(index: Int): Array<Box> {
+        return sudokuGrid[index]
     }
 }
