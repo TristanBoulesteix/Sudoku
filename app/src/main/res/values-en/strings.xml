@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Sudoku</string>
-    <string name="sudoku" translatable="false">sudoku</string>
     <string name="confirm_button_text">Confirm sudoku</string>
     <string name="help_button_text">Help</string>
     <string name="start">Start game</string>

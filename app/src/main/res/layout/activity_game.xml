@@ -1,22 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent" >
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
     <TextView
-            android:text="TextView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:layout_marginBottom="20dp"/>
+            android:layout_height="0dp"
+            android:layout_weight=".05"
+            android:text="TextView"
+            android:textSize="30sp" />
 
     <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="372dp"
             android:id="@+id/sudoku"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp">
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight=".65">
 
     </FrameLayout>
+
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_validate"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:backgroundTint="@color/colorPrimary"
+                app:srcCompat="@drawable/ic_play_circle_black_18dp" />
+
+        <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_help"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:backgroundTint="@color/colorPrimary"
+                app:srcCompat="@drawable/ic_play_circle_black_18dp" />
+
+        <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_reset"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:backgroundTint="@color/colorPrimary"
+                app:srcCompat="@drawable/ic_play_circle_black_18dp" />
+
+        <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="@dimen/fab_margin"
+                android:clickable="true"
+                android:focusable="true"
+                app:backgroundTint="@color/colorPrimary"
+                app:srcCompat="@drawable/ic_play_circle_black_18dp" />
+
+    </RelativeLayout>
+
 </LinearLayout>
