@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical">
@@ -13,65 +13,85 @@
             android:text="TextView"
             android:textSize="30sp" />
 
-    <FrameLayout
-            android:id="@+id/sudoku"
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_weight=".65">
+            android:layout_weight=".95"
+            android:orientation="vertical">
 
-    </FrameLayout>
+        <FrameLayout
+                android:id="@+id/sudoku"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp">
 
-    <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        </FrameLayout>
 
-        <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab_validate"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_gravity="end|bottom"
-                android:layout_margin="5dp"
-                android:clickable="true"
-                android:focusable="true"
-                app:backgroundTint="@color/colorPrimary"
-                app:srcCompat="@drawable/ic_play_circle_black_18dp" />
+        <com.github.clans.fab.FloatingActionMenu
+                android:id="@+id/fab_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                android:paddingEnd="@dimen/activity_horizontal_margin"
+                android:paddingBottom="@dimen/activity_horizontal_margin"
+                fab:fab_shadowColor="#66000000"
+                fab:fab_showShadow="true"
+                fab:menu_colorNormal="@color/colorPrimary"
+                fab:menu_colorPressed="@color/colorPrimaryDark"
+                fab:menu_fab_label="@string/tooltip_fab_label"
+                fab:menu_labels_ellipsize="end"
+                fab:menu_labels_maxLines="-1"
+                fab:menu_labels_position="left"
+                fab:menu_labels_showShadow="true"
+                fab:menu_labels_singleLine="true"
+                fab:menu_openDirection="up">
 
-        <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab_help"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_gravity="end|bottom"
-                android:layout_margin="5dp"
-                android:clickable="true"
-                android:focusable="true"
-                app:backgroundTint="@color/colorPrimary"
-                app:srcCompat="@drawable/ic_play_circle_black_18dp" />
+            <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_menu_help"
+                    fab:fab_colorNormal="@color/colorPrimary"
+                    fab:fab_colorPressed="@color/colorPrimaryDark"
+                    fab:fab_label="@string/help_fab_label"
+                    fab:fab_size="mini" />
 
-        <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab_reset"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_gravity="end|bottom"
-                android:layout_margin="5dp"
-                android:clickable="true"
-                android:focusable="true"
-                app:backgroundTint="@color/colorPrimary"
-                app:srcCompat="@drawable/ic_play_circle_black_18dp" />
+            <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_validate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/done_white"
+                    fab:fab_colorNormal="@color/colorPrimary"
+                    fab:fab_colorPressed="@color/colorPrimaryDark"
+                    fab:fab_label="@string/validate_fab_text"
+                    fab:fab_size="mini" />
 
-        <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|bottom"
-                android:layout_margin="@dimen/fab_margin"
-                android:clickable="true"
-                android:focusable="true"
-                app:backgroundTint="@color/colorPrimary"
-                app:srcCompat="@drawable/ic_play_circle_black_18dp" />
+            <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_reset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_popup_sync"
+                    fab:fab_colorNormal="@color/colorPrimary"
+                    fab:fab_colorPressed="@color/colorPrimaryDark"
+                    fab:fab_label="@string/reset_fab_label"
+                    fab:fab_size="mini" />
+
+            <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_settings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_popup_sync"
+                    fab:fab_colorNormal="@color/colorPrimary"
+                    fab:fab_colorPressed="@color/colorPrimaryDark"
+                    fab:fab_label="@string/reset_fab_label"
+                    fab:fab_size="mini" />
+
+        </com.github.clans.fab.FloatingActionMenu>
 
     </RelativeLayout>
 

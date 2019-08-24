@@ -2,7 +2,8 @@
 <resources>
     <string name="app_name">Sudoku</string>
     <string name="start">Commencer à jouer</string>
-    <string name="help_button_text">aide</string>
-    <string name="confirm_button_text">Valider le sudoku</string>
-    <string name="reset_button_text">Réinitialiser le sudoku</string>
+    <string name="help_fab_label">aide</string>
+    <string name="validate_fab_text">Valider le sudoku</string>
+    <string name="reset_fab_label">Réinitialiser le sudoku</string>
+    <string name="tooltip_fab_label">Choisissez une action</string>
 </resources>

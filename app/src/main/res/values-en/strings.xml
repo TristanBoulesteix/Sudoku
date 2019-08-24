@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Sudoku</string>
-    <string name="confirm_button_text">Confirm sudoku</string>
-    <string name="help_button_text">Help</string>
+    <string name="validate_fab_text">Confirm sudoku</string>
+    <string name="help_fab_label">Help</string>
     <string name="start">Start game</string>
-    <string name="reset_button_text">reset sudoku</string>
+    <string name="reset_fab_label">reset sudoku</string>
+    <string name="tooltip_fab_label">Choose an action</string>
 </resources>
