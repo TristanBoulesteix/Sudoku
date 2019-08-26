@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Sudoku</string>
-    <string name="sudoku" translatable="false">sudoku</string>
-    <string name="validate_fab_text">Confirm sudoku</string>
+    <string name="sudoku" translatable="false">Sudoku</string>
+    <string name="validate_fab_label">Confirm sudoku</string>
     <string name="help_fab_label">Help</string>
     <string name="start">Start game</string>
-    <string name="reset_fab_label">reset sudoku</string>
+    <string name="reset_fab_label">Reset sudoku</string>
     <string name="tooltip_fab_label">Choose an action</string>
+    <string name="settings">Settings</string>
 </resources>
