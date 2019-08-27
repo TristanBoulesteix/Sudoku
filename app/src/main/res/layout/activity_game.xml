@@ -30,7 +30,7 @@
 
         </FrameLayout>
 
-        <com.github.clans.fab.FloatingActionMenu
+        <com.tboul.sudoku.views.components.FloatingActionMenuPlay
                 android:id="@+id/fab_menu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -44,7 +44,6 @@
                 fab:menu_colorNormal="@color/colorPrimary"
                 fab:menu_colorPressed="@color/colorPrimaryDark"
                 fab:menu_fab_label="@string/tooltip_fab_label"
-                fab:menu_icon="@mipmap/ic_play"
                 fab:menu_labels_ellipsize="end"
                 fab:menu_labels_maxLines="-1"
                 fab:menu_labels_position="left"
@@ -92,7 +91,7 @@
                     fab:fab_label="@string/settings"
                     fab:fab_size="mini" />
 
-        </com.github.clans.fab.FloatingActionMenu>
+        </com.tboul.sudoku.views.components.FloatingActionMenuPlay>
 
     </RelativeLayout>
 
