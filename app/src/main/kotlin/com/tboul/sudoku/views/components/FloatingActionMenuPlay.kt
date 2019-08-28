@@ -10,6 +10,7 @@ class FloatingActionMenuPlay(context: Context?, attrs: AttributeSet?) :
     init {
         menuIconView.setImageResource(R.mipmap.ic_play)
         isIconAnimated = false
+        setClosedOnTouchOutside(true)
     }
 
     override fun close(animate: Boolean) {
