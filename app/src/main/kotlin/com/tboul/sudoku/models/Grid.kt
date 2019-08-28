@@ -25,7 +25,7 @@ class Grid {
 
         val randNum = { x: Int -> floor((Math.random() * x + 1)).toInt() }
 
-        var count = 10
+        var count = 12
 
         while (count != 0) {
             val cellId = randNum(SUDOKU_SIZE * SUDOKU_SIZE)
