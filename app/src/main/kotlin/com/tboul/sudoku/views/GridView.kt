@@ -73,55 +73,15 @@ class GridView(private val grid: Grid, context: Context?, attrs: AttributeSet? =
                         j * cellWidth + cellWidth * 0.75F,
                         paint
                     )
-                } else {
-                    paint.textSize = cellWidth * 0.33F
-                    paint.color = 0xFFA0A0A0.toInt()
-
-/*                    if ( gameBoard.cells[y][x].marks[0] ) {
-                        canvas.drawText("1",
-                            x * cellWidth + cellWidth * 0.2f,
-                            y * cellWidth + cellWidth * 0.3f, paint);
-                    }
-                    if ( gameBoard.cells[y][x].marks[1] ) {
-                        canvas.drawText("2",
-                            x * cellWidth + cellWidth * 0.5f,
-                            y * cellWidth + cellWidth * 0.3f, paint);
-                    }
-                    if ( gameBoard.cells[y][x].marks[2] ) {
-                        canvas.drawText("3",
-                            x * cellWidth + cellWidth * 0.8f,
-                            y * cellWidth + cellWidth * 0.3f, paint);
-                    }
-                    if ( gameBoard.cells[y][x].marks[3] ) {
-                        canvas.drawText("4",
-                            x * cellWidth + cellWidth * 0.2f,
-                            y * cellWidth + cellWidth * 0.6f, paint);
-                    }
-                    if ( gameBoard.cells[y][x].marks[4] ) {
-                        canvas.drawText("5",
-                            x * cellWidth + cellWidth * 0.5f,
-                            y * cellWidth + cellWidth * 0.6f, paint);
-                    }
-                    if ( gameBoard.cells[y][x].marks[5] ) {
-                        canvas.drawText("6",
-                            x * cellWidth + cellWidth * 0.8f,
-                            y * cellWidth + cellWidth * 0.6f, paint);
-                    }
-                    if ( gameBoard.cells[y][x].marks[6] ) {
-                        canvas.drawText("7",
-                            x * cellWidth + cellWidth * 0.2f,
-                            y * cellWidth + cellWidth * 0.9f, paint);
-                    }
-                    if ( gameBoard.cells[y][x].marks[7] ) {
-                        canvas.drawText("8",
-                            x * cellWidth + cellWidth * 0.5f,
-                            y * cellWidth + cellWidth * 0.9f, paint);
-                    }
-                    if ( gameBoard.cells[y][x].marks[8] ) {
-                        canvas.drawText("9",
-                            x * cellWidth + cellWidth * 0.8f,
-                            y * cellWidth + cellWidth * 0.9f, paint);
-                    }*/
+                } else if (grid[i][j].currentValue != 0) {
+                    paint.color = 0xFF000000.toInt()
+                    paint.textSize = cellWidth * 0.7F
+                    canvas?.drawText(
+                        grid[i][j].currentValue.toString(),
+                        i * cellWidth + cellWidth / 2,
+                        j * cellWidth + cellWidth * 0.75F,
+                        paint
+                    )
                 }
             }
         }
@@ -189,10 +149,31 @@ class GridView(private val grid: Grid, context: Context?, attrs: AttributeSet? =
         if (e!!.y < gridWidth) {
             grid.x = (e.x / cellWidth).toInt()
             grid.y = (e.y / cellWidth).toInt()
-            print("x = ${grid.x} -- y = ${grid.y}")
             postInvalidate()
             return true
         }
+
+        var buttonLeft = buttonMargin
+        var buttonTop = 9 * cellWidth + gridSeparatorSize / 2
+
+        for (i in 1..9) {
+            val rect =
+                RectF(buttonLeft, buttonTop, buttonLeft + buttonWidth, buttonTop + buttonWidth)
+
+            if (rect.contains(e.x, e.y)) {
+                if(grid.x != -1 && grid.y != -1) grid.updateValue(i)
+                postInvalidate()
+                return true
+            }
+
+            if (i != 6) {
+                buttonLeft += buttonWidth + buttonMargin;
+            } else {
+                buttonLeft = buttonMargin;
+                buttonTop += buttonWidth + buttonMargin;
+            }
+        }
+
         return true
     }
 

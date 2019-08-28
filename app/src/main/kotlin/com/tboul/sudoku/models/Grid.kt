@@ -5,7 +5,7 @@ import com.tboul.sudoku.utils.SUDOKU_SIZE
 import kotlin.math.floor
 
 class Grid {
-    private var sudokuGrid: Array<Array<Box>> = arrayOf()
+    private var sudokuGrid: Array<Array<Cells>> = arrayOf()
 
     var x = -1
     var y = -1
@@ -14,10 +14,10 @@ class Grid {
         val grid = GridFactory().grid
 
         for (array in grid) {
-            var line = arrayOf<Box>()
+            var line = arrayOf<Cells>()
 
             for (element in array) {
-                line += Box(element)
+                line += Cells(element)
             }
 
             sudokuGrid += line
@@ -32,7 +32,7 @@ class Grid {
 
             val i = cellId / SUDOKU_SIZE
             var j = cellId % 9
-            
+
             if (i == 9 || j == 9) continue
             if (j != 0) j--
 
@@ -43,7 +43,11 @@ class Grid {
         }
     }
 
-    operator fun get(index: Int): Array<Box> {
+    fun updateValue(value: Int) {
+        this[x][y].currentValue = value
+    }
+
+    operator fun get(index: Int): Array<Cells> {
         return sudokuGrid[index]
     }
 }
