@@ -8,14 +8,17 @@ import android.graphics.Paint
 import android.graphics.Paint.ANTI_ALIAS_FLAG
 import android.graphics.RectF
 import android.util.AttributeSet
+import android.view.GestureDetector
+import android.view.MotionEvent
 import android.view.View
 import com.tboul.sudoku.models.Grid
 
 
 @SuppressLint("ViewConstructor")
 class GridView(private val grid: Grid, context: Context?, attrs: AttributeSet? = null) :
-    View(context, attrs) {
+    View(context, attrs), GestureDetector.OnGestureListener {
     private val paint = Paint(ANTI_ALIAS_FLAG)
+    private val gestureDetector: GestureDetector = GestureDetector(getContext(), this)
 
     private var gridSeparatorSize = 0F
     private var gridWidth = 0F
@@ -43,12 +46,16 @@ class GridView(private val grid: Grid, context: Context?, attrs: AttributeSet? =
 
     override fun onDraw(canvas: Canvas?) {
         paint.textAlign = Paint.Align.CENTER
+        paint.style = Paint.Style.FILL
 
         // Draw the sudoku
-        for (i in 0 until 8) {
-            for (j in 0 until 8) {
-                val backgroundColor = if (!grid[i][j].visible) Color.WHITE else 0xFFF0F0F0.toInt()
-                paint.color = backgroundColor
+        for (i in 0..8) {
+            for (j in 0..8) {
+                paint.color = if (!grid[i][j].visible)
+                    if (grid.x == i && grid.y == j) Color.YELLOW else Color.WHITE
+                else
+                    0xFFF0F0F0.toInt()
+
                 canvas?.drawRect(
                     i * cellWidth,
                     j * cellWidth,
@@ -171,5 +178,51 @@ class GridView(private val grid: Grid, context: Context?, attrs: AttributeSet? =
                 buttonTop += buttonWidth + buttonMargin
             }
         }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        return gestureDetector.onTouchEvent(event)
+    }
+
+    override fun onSingleTapUp(e: MotionEvent?): Boolean {
+        if (e!!.y < gridWidth) {
+            grid.x = (e.x / cellWidth).toInt()
+            grid.y = (e.y / cellWidth).toInt()
+            print("x = ${grid.x} -- y = ${grid.y}")
+            postInvalidate()
+            return true
+        }
+        return true
+    }
+
+    override fun onDown(e: MotionEvent?): Boolean {
+        return true
+    }
+
+    override fun onFling(
+        e1: MotionEvent?,
+        e2: MotionEvent?,
+        velocityX: Float,
+        velocityY: Float
+    ): Boolean {
+        return false
+    }
+
+    override fun onScroll(
+        e1: MotionEvent?,
+        e2: MotionEvent?,
+        distanceX: Float,
+        distanceY: Float
+    ): Boolean {
+        return false
+    }
+
+    override fun onLongPress(e: MotionEvent?) {
+
+    }
+
+    override fun onShowPress(e: MotionEvent?) {
+
     }
 }

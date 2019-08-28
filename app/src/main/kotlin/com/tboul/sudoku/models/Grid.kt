@@ -7,14 +7,17 @@ import kotlin.math.floor
 class Grid {
     private var sudokuGrid: Array<Array<Box>> = arrayOf()
 
+    var x = -1
+    var y = -1
+
     init {
         val grid = GridFactory().grid
 
-        for (i in 0 until grid.size) {
+        for (array in grid) {
             var line = arrayOf<Box>()
 
-            for (j in 0 until grid.size) {
-                line += Box(grid[i][j])
+            for (element in array) {
+                line += Box(element)
             }
 
             sudokuGrid += line
@@ -29,6 +32,8 @@ class Grid {
 
             val i = cellId / SUDOKU_SIZE
             var j = cellId % 9
+            
+            if (i == 9 || j == 9) continue
             if (j != 0) j--
 
             if (sudokuGrid[i][j].visible) {
