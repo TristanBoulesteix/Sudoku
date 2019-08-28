@@ -11,4 +11,7 @@ class Cell(val value: Int) {
         set(newValue) {
             field = if (visible) 0 else newValue
         }
+
+    val valid
+        get() = currentValue == value
 }

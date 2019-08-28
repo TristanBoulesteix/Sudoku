@@ -35,11 +35,14 @@ class GridView(
     private var buttonRadius = 0F
     private var buttonMargin = 0F
 
+    var validate = false
+
     val clickReset = OnClickListener {
         grid.clearCells()
         grid.resetPosition()
         Toast.makeText(context, "Sudoku réinitialisé !", Toast.LENGTH_SHORT).show()
         fabMenu.close(true)
+        validate = false
         postInvalidate()
     }
 
@@ -67,7 +70,13 @@ class GridView(
         for (i in 0..8) {
             for (j in 0..8) {
                 paint.color = if (!grid[i][j].visible)
-                    if (grid.x == i && grid.y == j) Color.YELLOW else Color.WHITE
+                    if (grid.x == i && grid.y == j && !validate) Color.YELLOW
+                    else if (validate && grid[i][j].valid)
+                        Color.GREEN
+                    else if (validate && !grid[i][j].valid)
+                        Color.RED
+                    else
+                        Color.WHITE
                 else
                     0xFFF0F0F0.toInt()
 
@@ -161,34 +170,37 @@ class GridView(
     }
 
     override fun onSingleTapUp(e: MotionEvent?): Boolean {
-        if (e!!.y < gridWidth) {
-            grid.x = (e.x / cellWidth).toInt()
-            grid.y = (e.y / cellWidth).toInt()
-            postInvalidate()
-            return true
-        }
-
-        var buttonLeft = buttonMargin
-        var buttonTop = 9 * cellWidth + gridSeparatorSize / 2
-
-        for (i in 1..9) {
-            val rect =
-                RectF(buttonLeft, buttonTop, buttonLeft + buttonWidth, buttonTop + buttonWidth)
-
-            if (rect.contains(e.x, e.y)) {
-                if (grid.x != -1 && grid.y != -1) grid.updateValue(i)
+        if (!validate) {
+            if (e!!.y < gridWidth) {
+                grid.x = (e.x / cellWidth).toInt()
+                grid.y = (e.y / cellWidth).toInt()
                 postInvalidate()
                 return true
             }
 
-            if (i != 6) {
-                buttonLeft += buttonWidth + buttonMargin;
-            } else {
-                buttonLeft = buttonMargin;
-                buttonTop += buttonWidth + buttonMargin;
-            }
-        }
+            var buttonLeft = buttonMargin
+            var buttonTop = 9 * cellWidth + gridSeparatorSize / 2
 
+            for (i in 1..9) {
+                val rect =
+                    RectF(buttonLeft, buttonTop, buttonLeft + buttonWidth, buttonTop + buttonWidth)
+
+                if (rect.contains(e.x, e.y)) {
+                    if (grid.x != -1 && grid.y != -1) grid.updateValue(i)
+                    postInvalidate()
+                    return true
+                }
+
+                if (i != 6) {
+                    buttonLeft += buttonWidth + buttonMargin;
+                } else {
+                    buttonLeft = buttonMargin;
+                    buttonTop += buttonWidth + buttonMargin;
+                }
+            }
+
+            return true
+        }
         return true
     }
 

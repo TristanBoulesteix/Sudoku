@@ -30,6 +30,10 @@ class GameActivity : AppCompatActivity() {
             ).toBundle()
             startActivity(gameActivity, transition)
         }
+        findViewById<FloatingActionButton>(R.id.fab_validate).setOnClickListener{
+            gridView.validate = true
+            gridView.postInvalidate()
+        }
         findViewById<FrameLayout>(R.id.sudoku).addView(gridView)
     }
 }
