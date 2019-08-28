@@ -12,13 +12,13 @@ class FloatingActionMenuPlay(context: Context?, attrs: AttributeSet?) :
         isIconAnimated = false
     }
 
-    override fun toggle(animate: Boolean) {
-        super.toggle(animate)
+    override fun close(animate: Boolean) {
+        super.close(animate)
+        menuIconView.setImageResource(R.mipmap.ic_play)
+    }
 
-        if(isOpened) {
-            menuIconView.setImageResource(R.mipmap.ic_play)
-        } else {
-            menuIconView.setImageResource(R.mipmap.ic_pause)
-        }
+    override fun open(animate: Boolean) {
+        super.open(animate)
+        menuIconView.setImageResource(R.mipmap.ic_pause)
     }
 }

@@ -11,11 +11,19 @@ import android.util.AttributeSet
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnClickListener
+import android.widget.Toast
+import com.github.clans.fab.FloatingActionMenu
 import com.tboul.sudoku.models.Grid
 
 
 @SuppressLint("ViewConstructor")
-class GridView(private val grid: Grid, context: Context?, attrs: AttributeSet? = null) :
+class GridView(
+    private val grid: Grid,
+    private val fabMenu: FloatingActionMenu,
+    context: Context?,
+    attrs: AttributeSet? = null
+) :
     View(context, attrs), GestureDetector.OnGestureListener {
     private val paint = Paint(ANTI_ALIAS_FLAG)
     private val gestureDetector: GestureDetector = GestureDetector(getContext(), this)
@@ -27,6 +35,13 @@ class GridView(private val grid: Grid, context: Context?, attrs: AttributeSet? =
     private var buttonRadius = 0F
     private var buttonMargin = 0F
 
+    val clickReset = OnClickListener {
+        grid.clearCells()
+        grid.resetPosition()
+        Toast.makeText(context, "Sudoku réinitialisé !", Toast.LENGTH_SHORT).show()
+        fabMenu.close(true)
+        postInvalidate()
+    }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
@@ -161,7 +176,7 @@ class GridView(private val grid: Grid, context: Context?, attrs: AttributeSet? =
                 RectF(buttonLeft, buttonTop, buttonLeft + buttonWidth, buttonTop + buttonWidth)
 
             if (rect.contains(e.x, e.y)) {
-                if(grid.x != -1 && grid.y != -1) grid.updateValue(i)
+                if (grid.x != -1 && grid.y != -1) grid.updateValue(i)
                 postInvalidate()
                 return true
             }

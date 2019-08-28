@@ -1,6 +1,6 @@
 package com.tboul.sudoku.models
 
-class Cells(val value: Int) {
+class Cell(val value: Int) {
     var visible = true
         set(state) {
             field = state
