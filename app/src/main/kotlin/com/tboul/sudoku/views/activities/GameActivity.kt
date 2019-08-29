@@ -41,7 +41,7 @@ class GameActivity : TemplateActivity() {
         findViewById<FloatingActionButton>(R.id.fab_new_game).setOnClickListener(gridView.restartClick)
 
         // buttons actions
-        findViewById<Button>(R.id.button_restart).setOnClickListener(gridView.clickRestart)
+        findViewById<Button>(R.id.button_restart).setOnClickListener(gridView.resetClick)
         findViewById<Button>(R.id.button_validate).setOnClickListener(gridView.validateClick)
     }
 }
