@@ -7,6 +7,16 @@ import kotlin.math.floor
 class Grid {
     private var sudokuGrid: Array<Array<Cell>> = arrayOf()
 
+    val valid: Boolean
+        get() {
+            for (cells in sudokuGrid) {
+                for (cell in cells) {
+                    if (!cell.valid && !cell.visible) return false
+                }
+            }
+            return true
+        }
+
     var x = -1
     var y = -1
 
@@ -48,11 +58,11 @@ class Grid {
     }
 
     fun clearCells() {
-       for (cells in sudokuGrid) {
-           for (cell in cells) {
-               if (!cell.visible) cell.currentValue = 0
-           }
-       }
+        for (cells in sudokuGrid) {
+            for (cell in cells) {
+                if (!cell.visible) cell.currentValue = 0
+            }
+        }
     }
 
     fun resetPosition() {

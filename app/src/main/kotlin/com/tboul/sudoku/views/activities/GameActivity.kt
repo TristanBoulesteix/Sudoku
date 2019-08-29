@@ -14,13 +14,14 @@ import com.tboul.sudoku.views.GridView
 class GameActivity : TemplateActivity() {
     private val gridView by lazy { GridView(Grid(), findViewById(R.id.fab_menu), this) }
 
-    override fun actionOnBackConfirmed() {}
+    override fun actionOnBackConfirmed() { finish() }
     override val confirmExitMessage: String by lazy { getString(R.string.confirm_exit_game_message) }
     override val confirmExitTitle: String by lazy { getString(R.string.confirm_exit_game_title) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+        findViewById<FrameLayout>(R.id.sudoku).addView(gridView)
 
         // fab action
         findViewById<FloatingActionButton>(R.id.fab_settings).setOnClickListener {
@@ -37,11 +38,10 @@ class GameActivity : TemplateActivity() {
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(i)
         }
+        findViewById<FloatingActionButton>(R.id.fab_new_game).setOnClickListener(gridView.restartClick)
 
         // buttons actions
         findViewById<Button>(R.id.button_restart).setOnClickListener(gridView.clickRestart)
         findViewById<Button>(R.id.button_validate).setOnClickListener(gridView.validateClick)
-
-        findViewById<FrameLayout>(R.id.sudoku).addView(gridView)
     }
 }

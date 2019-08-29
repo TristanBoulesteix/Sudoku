@@ -1,6 +1,7 @@
 package com.tboul.sudoku.views
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -12,8 +13,10 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnClickListener
+import android.widget.Button
 import android.widget.Toast
 import com.github.clans.fab.FloatingActionMenu
+import com.tboul.sudoku.R
 import com.tboul.sudoku.models.Grid
 
 
@@ -27,6 +30,7 @@ class GridView(
     View(context, attrs), GestureDetector.OnGestureListener {
     private val paint = Paint(ANTI_ALIAS_FLAG)
     private val gestureDetector: GestureDetector = GestureDetector(getContext(), this)
+    private val buttonValidate by lazy { (getContext() as Activity).findViewById<Button>(R.id.button_validate) }
 
     private var gridSeparatorSize = 0F
     private var gridWidth = 0F
@@ -40,14 +44,24 @@ class GridView(
     val clickRestart = OnClickListener {
         grid.clearCells()
         grid.resetPosition()
-        Toast.makeText(context, "Sudoku réinitialisé !", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Sudoku réinitialisé", Toast.LENGTH_SHORT).show()
         fabMenu.close(true)
         validate = false
         postInvalidate()
     }
+
     val validateClick = OnClickListener {
         validate = true
         postInvalidate()
+        if (grid.valid) {
+            Toast.makeText(context, "Sudoku complété !", Toast.LENGTH_SHORT).show()
+            buttonValidate.text = context?.getString(R.string.new_game_fab_label)
+            buttonValidate.setOnClickListener(restartClick)
+        }
+    }
+
+    val restartClick = OnClickListener  {
+        (getContext() as Activity).recreate()
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
