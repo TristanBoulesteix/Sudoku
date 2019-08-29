@@ -37,12 +37,16 @@ class GridView(
 
     var validate = false
 
-    val clickReset = OnClickListener {
+    val clickRestart = OnClickListener {
         grid.clearCells()
         grid.resetPosition()
         Toast.makeText(context, "Sudoku réinitialisé !", Toast.LENGTH_SHORT).show()
         fabMenu.close(true)
         validate = false
+        postInvalidate()
+    }
+    val validateClick = OnClickListener {
+        validate = true
         postInvalidate()
     }
 

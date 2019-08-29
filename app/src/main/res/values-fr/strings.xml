@@ -3,8 +3,16 @@
     <string name="app_name">Sudoku</string>
     <string name="start">Commencer à jouer</string>
     <string name="help_fab_label">Aide</string>
-    <string name="validate_fab_label">Valider le sudoku</string>
-    <string name="reset_fab_label">Réinitialiser le sudoku</string>
+    <string name="restart_label">Recommencer</string>
     <string name="tooltip_fab_label">Choisissez une action</string>
     <string name="settings">Paramètres</string>
+    <string name="validate_label">Valider</string>
+    <string name="home_fab_label">Retour au menu</string>
+    <string name="new_game_fab_label">Nouvelle partie</string>
+    <string name="confirm_exit_message">Êtes-vous sûr de quitter ce jeu ?</string>
+    <string name="confirm_exit_title">Quitter le jeu</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="confirm_exit_game_message">Êtes-vous sûr de quitter ce jeu ? Vos progrès ne serons pas suvegardé.</string>
+    <string name="confirm_exit_game_title">Quitter la partie</string>
 </resources>

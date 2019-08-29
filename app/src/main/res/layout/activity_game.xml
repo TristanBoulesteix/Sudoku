@@ -43,7 +43,6 @@
                 fab:fab_showShadow="true"
                 fab:menu_colorNormal="@color/colorPrimary"
                 fab:menu_colorPressed="@color/colorPrimaryDark"
-                fab:menu_fab_label="@string/tooltip_fab_label"
                 fab:menu_labels_ellipsize="end"
                 fab:menu_labels_maxLines="-1"
                 fab:menu_labels_position="left"
@@ -62,26 +61,6 @@
                     fab:fab_size="mini" />
 
             <com.github.clans.fab.FloatingActionButton
-                    android:id="@+id/fab_validate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_done"
-                    fab:fab_colorNormal="@color/colorPrimary"
-                    fab:fab_colorPressed="@color/colorPrimaryDark"
-                    fab:fab_label="@string/validate_fab_label"
-                    fab:fab_size="mini" />
-
-            <com.github.clans.fab.FloatingActionButton
-                    android:id="@+id/fab_reset"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_reset"
-                    fab:fab_colorNormal="@color/colorPrimary"
-                    fab:fab_colorPressed="@color/colorPrimaryDark"
-                    fab:fab_label="@string/reset_fab_label"
-                    fab:fab_size="mini" />
-
-            <com.github.clans.fab.FloatingActionButton
                     android:id="@+id/fab_settings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -91,7 +70,57 @@
                     fab:fab_label="@string/settings"
                     fab:fab_size="mini" />
 
+            <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_new_game"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_reset"
+                    fab:fab_colorNormal="@color/colorPrimary"
+                    fab:fab_colorPressed="@color/colorPrimaryDark"
+                    fab:fab_label="@string/new_game_fab_label"
+                    fab:fab_size="mini" />
+
+            <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_home"
+                    fab:fab_colorNormal="@color/colorPrimary"
+                    fab:fab_colorPressed="@color/colorPrimaryDark"
+                    fab:fab_label="@string/home_fab_label"
+                    fab:fab_size="mini" />
+
         </com.tboul.sudoku.views.components.FloatingActionMenuPlay>
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
+
+            <Button
+                    android:id="@+id/button_validate"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight=".50"
+                    android:background="@drawable/rounded_button"
+                    android:text="@string/validate_label" />
+
+            <Button
+                    android:id="@+id/button_restart"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="100dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight=".50"
+                    android:background="@drawable/rounded_button"
+                    android:text="@string/restart_label" />
+        </LinearLayout>
 
     </RelativeLayout>
 
