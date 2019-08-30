@@ -46,6 +46,10 @@ class GridView(
         grid.resetPosition()
         Toast.makeText(context, "Sudoku réinitialisé", Toast.LENGTH_SHORT).show()
         fabMenu.close(true)
+        if (validate) {
+            buttonValidate.text = context?.getString(R.string.validate_label)
+            buttonValidate.setOnClickListener(validateClick)
+        }
         validate = false
         postInvalidate()
     }

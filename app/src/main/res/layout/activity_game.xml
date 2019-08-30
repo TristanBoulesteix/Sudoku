@@ -6,17 +6,19 @@
         android:layout_height="fill_parent"
         android:orientation="vertical">
 
-    <TextView
+    <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".05"
-            android:text="TextView"
-            android:textSize="30sp" />
+            android:layout_height="50dp"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+    </com.google.android.gms.ads.AdView>
 
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".95"
+            android:layout_weight="1"
             android:orientation="vertical">
 
         <FrameLayout
@@ -24,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp">
 
@@ -102,7 +104,7 @@
             <Button
                     android:id="@+id/button_validate"
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="20dp"
@@ -113,7 +115,7 @@
             <Button
                     android:id="@+id/button_restart"
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="100dp"
                     android:layout_marginBottom="20dp"
