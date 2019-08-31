@@ -1,6 +1,5 @@
 package com.tboul.sudoku.views.activities
 
-import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -33,7 +32,7 @@ class GameActivity : TemplateActivity() {
         findViewById<AdView>(R.id.adView).loadAd(AdRequest.Builder().build())
 
         // fab action
-        findViewById<FloatingActionButton>(R.id.fab_settings).setOnClickListener {
+/*        findViewById<FloatingActionButton>(R.id.fab_settings).setOnClickListener {
             val gameActivity = Intent(this@GameActivity, SettingsActivity::class.java)
             val transition = ActivityOptions.makeCustomAnimation(
                 this@GameActivity,
@@ -41,7 +40,7 @@ class GameActivity : TemplateActivity() {
                 R.anim.trantion_end
             ).toBundle()
             startActivity(gameActivity, transition)
-        }
+        }*/
         findViewById<FloatingActionButton>(R.id.fab_home).setOnClickListener {
             val i = Intent(this, MainActivity::class.java)
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
