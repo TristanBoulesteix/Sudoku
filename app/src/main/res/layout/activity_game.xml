@@ -6,14 +6,11 @@
         android:layout_height="fill_parent"
         android:orientation="vertical">
 
-    <com.google.android.gms.ads.AdView
-            xmlns:ads="http://schemas.android.com/apk/res-auto"
+    <TextView
             android:id="@+id/adView"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            ads:adSize="SMART_BANNER"
-            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
-    </com.google.android.gms.ads.AdView>
+            android:layout_height="50dp">
+    </TextView>
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -110,7 +107,8 @@
                     android:layout_marginBottom="20dp"
                     android:layout_weight=".50"
                     android:background="@drawable/rounded_button"
-                    android:text="@string/validate_label" />
+                    android:text="@string/validate_label"
+                    style="?android:attr/borderlessButtonStyle"/>
 
             <Button
                     android:id="@+id/button_restart"
@@ -121,7 +119,8 @@
                     android:layout_marginBottom="20dp"
                     android:layout_weight=".50"
                     android:background="@drawable/rounded_button"
-                    android:text="@string/restart_label" />
+                    android:text="@string/restart_label"
+                    style="?android:attr/borderlessButtonStyle"/>
         </LinearLayout>
 
     </RelativeLayout>

@@ -5,9 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.FrameLayout
 import com.github.clans.fab.FloatingActionButton
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
 import com.tboul.sudoku.R
 import com.tboul.sudoku.models.Grid
 import com.tboul.sudoku.views.GridView
@@ -27,9 +24,6 @@ class GameActivity : TemplateActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         findViewById<FrameLayout>(R.id.sudoku).addView(gridView)
-
-        MobileAds.initialize(this) {}
-        findViewById<AdView>(R.id.adView).loadAd(AdRequest.Builder().build())
 
         // fab action
 /*        findViewById<FloatingActionButton>(R.id.fab_settings).setOnClickListener {
