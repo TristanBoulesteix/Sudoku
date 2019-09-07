@@ -64,7 +64,7 @@ class GridView(
         }
     }
 
-    val restartClick = OnClickListener  {
+    val restartClick = OnClickListener {
         (getContext() as Activity).recreate()
     }
 
