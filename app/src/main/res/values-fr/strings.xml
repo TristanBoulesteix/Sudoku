@@ -15,4 +15,5 @@
     <string name="no">Non</string>
     <string name="confirm_exit_game_message">Êtes-vous sûr de quitter ce jeu ? Vos progrès ne serons pas suvegardé.</string>
     <string name="confirm_exit_game_title">Quitter la partie</string>
+    <string name="comming_soon">Á venir</string>
 </resources>

@@ -1,4 +1,8 @@
 <resources>
+    <!-- Firebase strings -->
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3910814368891137/6295286789</string>
+    <string name="banner_ad_unit_id_test" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+
     <string name="app_name">Sudoku</string>
     <string name="sudoku" translatable="false">Sudoku</string>
     <string name="help_fab_label">Help</string>
@@ -7,21 +11,6 @@
     <string name="tooltip_fab_label">Choose an action</string>
     <string name="settings">Settings</string>
     <string name="title_activity_settings" translatable="false">Sudoku</string>
-
-    <!-- Preference Titles -->
-    <string name="messages_header" translatable="false">Messages</string>
-    <string name="sync_header" translatable="false">Sync</string>
-
-    <!-- Messages Preferences -->
-    <string name="signature_title" translatable="false">Your signature</string>
-    <string name="reply_title" translatable="false">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title" translatable="false">Sync email periodically</string>
-    <string name="attachment_title" translatable="false">Download incoming attachments</string>
-    <string name="attachment_summary_on" translatable="false">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off" translatable="false">Only download attachments when manually requested</string>
     <string name="validate_label">Validate</string>
     <string name="home_fab_label">Main menu</string>
     <string name="new_game_fab_label">Start a new game</string>
@@ -31,4 +20,5 @@
     <string name="no">No</string>
     <string name="confirm_exit_game_message">Are you sure you want to exit ? Your progress is not going to be saved.</string>
     <string name="confirm_exit_game_title">Exit game</string>
+    <string name="comming_soon">Comming soon</string>
 </resources>

@@ -17,9 +17,6 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
         <activity
-                android:name=".views.activities.SettingsActivity"
-                android:label="@string/title_activity_settings"/>
-        <activity
                 android:name=".views.activities.GameActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/app_name"

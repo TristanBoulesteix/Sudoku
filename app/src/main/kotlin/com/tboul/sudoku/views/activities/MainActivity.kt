@@ -4,17 +4,26 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.tboul.sudoku.R
 
 
 class MainActivity : TemplateActivity() {
     override fun actionOnBackConfirmed() = finish()
-    override val confirmExitMessage: String by lazy { getString(R.string.confirm_exit_message) }
-    override val confirmExitTitle: String by lazy { getString(R.string.confirm_exit_title) }
+    override val confirmExitMessage by lazy { getString(R.string.confirm_exit_message) }
+    override val confirmExitTitle by lazy { getString(R.string.confirm_exit_title) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        MobileAds.initialize(this, "ca-app-pub-3910814368891137~8945215440")
+
+        val adView = findViewById<AdView>(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
 
         findViewById<Button>(R.id.start_button).setOnClickListener {
             val gameActivity = Intent(this@MainActivity, GameActivity::class.java)
