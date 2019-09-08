@@ -20,5 +20,21 @@
     <string name="no">No</string>
     <string name="confirm_exit_game_message">Are you sure you want to exit ? Your progress is not going to be saved.</string>
     <string name="confirm_exit_game_title">Exit game</string>
-    <string name="comming_soon">Comming soon</string>
+    <string name="comming_soon">Coming soon</string>
+
+    <!-- Help text -->
+    <string name="how_to_play" translatable="false">Comment jouer ?</string>
+    <string name="how_to_play_text" translatable="false">
+        <![CDATA[
+            Le but du jeu du Sudoku est de remplir toutes les cases avec un nombre entre 1 et 9.
+            Il ne doit pas y avoir plusieurs fois le même nombre sur une même ligne, une même colonne ou un même carré.
+            <br>
+            <br>
+            Pour entrer un nombre dans une case, vous devez&nbsp;:<br>
+            <b>1.</b> Sélectionner la case du Sudoku que vous vouler remplir en cliquant dessus. Les cases que vous pouvez modifier possèdent un fond blanc.<br>
+            <img src="sudoku_example"><br>
+            <b>2.</b> Cliquer sur l\'un des nombres de 1 à 9 en dessous pour mettre la valeur désirée.<br>
+            <img src="sudoku_bottom_button"><br>
+        ]]>
+    </string>
 </resources>

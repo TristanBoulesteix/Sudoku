@@ -11,9 +11,10 @@ import com.tboul.sudoku.R
 import com.tboul.sudoku.models.Grid
 import com.tboul.sudoku.utils.dpToPx
 import com.tboul.sudoku.views.GridView
+import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
 
 
-class GameActivity : TemplateActivity() {
+class GameActivity : MainTemplateActivity() {
     private val gridView by lazy { GridView(Grid(), findViewById(R.id.fab_menu), this) }
 
     override fun actionOnBackConfirmed() {

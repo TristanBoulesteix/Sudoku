@@ -1,22 +1,16 @@
-package com.tboul.sudoku.views.activities
+package com.tboul.sudoku.views.activities.templates
 
 import android.app.AlertDialog
-import android.os.Bundle
-import android.view.Window
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import android.view.View
 import com.tboul.sudoku.R
+import com.tboul.sudoku.views.activities.HelpActivity
 
-abstract class TemplateActivity : AppCompatActivity() {
-    abstract fun actionOnBackConfirmed()
-
+abstract class MainTemplateActivity : TemplateActivity() {
     abstract val confirmExitMessage: String
     abstract val confirmExitTitle: String
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        supportActionBar?.hide()
-    }
+    abstract fun actionOnBackConfirmed()
 
     override fun onBackPressed() {
         AlertDialog.Builder(this)
@@ -27,4 +21,7 @@ abstract class TemplateActivity : AppCompatActivity() {
             .setNegativeButton(R.string.no, null)
             .show()
     }
+
+    fun openHelpActivity(view: View) =
+        startActivity(Intent(this, HelpActivity::class.java))
 }

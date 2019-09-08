@@ -3,10 +3,11 @@
         xmlns:tools="http://schemas.android.com/tools"
         package="com.tboul.sudoku">
 
-    <supports-screens android:smallScreens="true"
-            android:normalScreens="true"
+    <supports-screens
             android:largeScreens="false"
-            android:xlargeScreens="false"/>
+            android:normalScreens="true"
+            android:smallScreens="true"
+            android:xlargeScreens="false" />
 
     <application
             android:allowBackup="true"
@@ -16,6 +17,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".views.activities.HelpActivity"></activity>
         <activity
                 android:name=".views.activities.GameActivity"
                 android:configChanges="orientation|keyboardHidden"
@@ -32,9 +34,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
                 android:name="com.google.android.gms.ads.APPLICATION_ID"
-                android:value="ca-app-pub-3910814368891137~8945215440"/>
+                android:value="ca-app-pub-3910814368891137~8945215440" />
         <meta-data
                 android:name="preloaded_fonts"
                 android:resource="@array/preloaded_fonts" />
