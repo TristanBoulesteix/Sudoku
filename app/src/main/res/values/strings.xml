@@ -42,7 +42,7 @@
     <string name="play_mode" translatable="false">Quels sont les modes de jeux ?</string>
     <string name="play_mode_text" translatable="false">
         <![CDATA[
-            Il n\'y a qu\'un seul mode de jeu pour le moment. Il s\'agit du mode
+            Il n\'y a qu\'un seul mode de jeu pour le moment. Il s\'agit du mode $normal_game@. Ce mode vous permet de jouer avec les règles de base du Sudoku. Il possède 3 niveaux de difficultés.
         ]]>
     </string>
 </resources>
