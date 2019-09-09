@@ -45,17 +45,8 @@
                 fab:fab_colorNormal="@color/colorPrimary"
                 fab:fab_colorPressed="@color/colorPrimaryDark"
                 fab:fab_label="@string/help_fab_label"
-                fab:fab_size="mini" />
-
-<!--        <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/fab_settings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_settings"
-                fab:fab_colorNormal="@color/colorPrimary"
-                fab:fab_colorPressed="@color/colorPrimaryDark"
-                fab:fab_label="@string/settings"
-                fab:fab_size="mini" />-->
+                fab:fab_size="mini"
+                tools:ignore="OnClick" />
 
         <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/fab_new_game"
