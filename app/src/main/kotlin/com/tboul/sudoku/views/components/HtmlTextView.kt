@@ -7,25 +7,21 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import com.tboul.sudoku.R
+import com.tboul.sudoku.utils.concatenated
 
 class HtmlTextView(context: Context?, attrs: AttributeSet?) : TextView(context, attrs) {
     override fun setText(text: CharSequence?, type: BufferType?) {
         val htmlImageGetter = Html.ImageGetter {
-            val id = when (it) {
-                "sudoku_example" -> R.drawable.sudoku_example
-                "sudoku_bottom_button" -> R.drawable.sudoku_bottom_button
-                else -> R.drawable.sudoku_example
+            when (it) {
+                "sudoku_example" -> ContextCompat.getDrawable(context!!, R.drawable.sudoku_example)?.apply { setBounds(0,0,500,500) }
+                "sudoku_bottom_button" -> ContextCompat.getDrawable(context!!, R.drawable.sudoku_bottom_button)?.apply { setBounds(0, 0,500,250) }
+                else -> ContextCompat.getDrawable(context!!, R.drawable.sudoku_example)?.apply { setBounds(0,0,100,100) }
             }
-
-            val drawable = ContextCompat.getDrawable(context!!, id)
-            drawable?.setBounds(0, 0, 500, 500)
-
-            drawable!!
         }
 
         super.setText(
             HtmlCompat.fromHtml(
-                text.toString(),
+                text.toString().concatenated(context),
                 HtmlCompat.FROM_HTML_MODE_LEGACY,
                 htmlImageGetter,
                 null
