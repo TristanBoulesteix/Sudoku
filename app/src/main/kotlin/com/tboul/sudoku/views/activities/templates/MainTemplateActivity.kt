@@ -22,6 +22,6 @@ abstract class MainTemplateActivity : TemplateActivity() {
             .show()
     }
 
-    fun openHelpActivity(view: View) =
+    fun openHelpActivity(@Suppress("UNUSED_PARAMETER") view: View) =
         startActivity(Intent(this, HelpActivity::class.java))
 }

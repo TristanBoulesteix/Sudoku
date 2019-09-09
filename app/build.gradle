@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+
 apply plugin: 'com.google.gms.google-services'
 
 android {
@@ -41,5 +42,4 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.github.clans:fab:1.6.4'
-    implementation 'com.google.firebase:firebase-ads:18.2.0'
 }

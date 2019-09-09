@@ -27,7 +27,7 @@ class MainActivity : MainTemplateActivity() {
         adView.loadAd(adRequest)
     }
 
-    fun openGameActivity(view: View) {
+    fun openGameActivity(@Suppress("UNUSED_PARAMETER") view: View) {
         val gameActivity = Intent(this, GameActivity::class.java)
         val transition = ActivityOptions.makeCustomAnimation(
             this@MainActivity,
