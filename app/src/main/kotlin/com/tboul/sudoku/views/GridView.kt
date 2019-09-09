@@ -39,7 +39,7 @@ class GridView(
     private var buttonRadius = 0F
     private var buttonMargin = 0F
 
-    var validate = false
+    private var validate = false
 
     val resetClick = OnClickListener {
         grid.clearCells()
@@ -180,7 +180,7 @@ class GridView(
             if (i != 6) {
                 buttonLeft += buttonWidth + buttonMargin
             } else {
-                buttonLeft = buttonMargin;
+                buttonLeft = buttonMargin
                 buttonTop += buttonWidth + buttonMargin
             }
         }
@@ -214,10 +214,10 @@ class GridView(
                 }
 
                 if (i != 6) {
-                    buttonLeft += buttonWidth + buttonMargin;
+                    buttonLeft += buttonWidth + buttonMargin
                 } else {
-                    buttonLeft = buttonMargin;
-                    buttonTop += buttonWidth + buttonMargin;
+                    buttonLeft = buttonMargin
+                    buttonTop += buttonWidth + buttonMargin
                 }
             }
 

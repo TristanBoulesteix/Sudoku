@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Sudoku</string>
-    <string name="start">Commencer à jouer</string>
+    <string name="normal_game">Partie normale</string>
     <string name="help_fab_label">Aide</string>
     <string name="restart_label">Recommencer</string>
     <string name="tooltip_fab_label">Choisissez une action</string>

@@ -3,13 +3,13 @@ package com.tboul.sudoku.views.components
 import android.content.Context
 import android.text.Html
 import android.util.AttributeSet
-import android.widget.TextView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import com.tboul.sudoku.R
 import com.tboul.sudoku.utils.concatenated
 
-class HtmlTextView(context: Context?, attrs: AttributeSet?) : TextView(context, attrs) {
+class HtmlTextView(context: Context?, attrs: AttributeSet?) : AppCompatTextView(context, attrs) {
     override fun setText(text: CharSequence?, type: BufferType?) {
         val htmlImageGetter = Html.ImageGetter {
             when (it) {

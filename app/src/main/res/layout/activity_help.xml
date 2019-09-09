@@ -40,6 +40,19 @@
                 android:layout_height="wrap_content"
                 android:text="@string/how_to_play_text" />
 
+        <TextView
+                android:id="@+id/play_mode"
+                style="@style/Title1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/play_mode" />
+
+        <com.tboul.sudoku.views.components.HtmlTextView
+                android:id="@+id/play_mode_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/play_mode_text" />
+
     </LinearLayout>
 
 

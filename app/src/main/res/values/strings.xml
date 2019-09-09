@@ -6,7 +6,7 @@
     <string name="app_name">Sudoku</string>
     <string name="sudoku" translatable="false">Sudoku</string>
     <string name="help_fab_label">Help</string>
-    <string name="start">Start game</string>
+    <string name="normal_game">Normal game</string>
     <string name="restart_label">Restart</string>
     <string name="tooltip_fab_label">Choose an action</string>
     <string name="settings">Settings</string>
@@ -36,7 +36,13 @@
             <b>2.</b> Cliquer sur l\'un des nombres de 1 à 9 en dessous pour mettre la valeur désirée.<br>
             <img src="sudoku_bottom_button"><br>
             <br>
-            Si vous voulez vider le Sudoku, cliquez sur $restart_label@.
+            Si vous voulez vider le Sudoku, cliquez sur le boutton \"$restart_label@\". Une fois que vous pensez avoir terminé, cliquez sur le boutton \"$validate_label@\".
+        ]]>
+    </string>
+    <string name="play_mode" translatable="false">Quels sont les modes de jeux ?</string>
+    <string name="play_mode_text" translatable="false">
+        <![CDATA[
+            Il n\'y a qu\'un seul mode de jeu pour le moment. Il s\'agit du mode
         ]]>
     </string>
 </resources>
