@@ -1,8 +1,6 @@
 package com.tboul.sudoku.models
 
 import com.tboul.sudoku.models.factories.GridFactory
-import com.tboul.sudoku.utils.SUDOKU_SIZE
-import kotlin.math.floor
 
 class Grid {
     private var sudokuGrid: Array<Array<Cell>> = arrayOf()
@@ -33,23 +31,19 @@ class Grid {
             sudokuGrid += line
         }
 
-        val randNum = { x: Int -> floor((Math.random() * x + 1)).toInt() }
+        val attempts = 5
+        val randNum = { (0..8).shuffled().first() }
 
-        var count = 12
+        while (attempts > 0) {
+            var row = randNum()
+            var col = randNum()
 
-        while (count != 0) {
-            val cellId = randNum(SUDOKU_SIZE * SUDOKU_SIZE)
-
-            val i = cellId / SUDOKU_SIZE
-            var j = cellId % 9
-
-            if (i == 9 || j == 9) continue
-            if (j != 0) j--
-
-            if (sudokuGrid[i][j].visible) {
-                count--
-                sudokuGrid[i][j].visible = false
+            while (!sudokuGrid[row][col].visible) {
+                row = randNum()
+                col = randNum()
             }
+
+            sudokuGrid[row][col].visible = false
         }
     }
 
@@ -72,5 +66,45 @@ class Grid {
 
     operator fun get(index: Int): Array<Cell> {
         return sudokuGrid[index]
+    }
+
+    private fun solve() : Boolean {
+        fun valueInCol(col: Int, value: Int): Boolean {
+            for (abscissa in 0 until 10)
+                if (sudokuGrid[abscissa][col].value == value) return true
+            return false
+        }
+
+        fun valueInSquare(abs: Int, ord: Int, value: Int): Boolean {
+            for (abscissa in abs until abs + 3) {
+                for (ordinate in ord until ord + 3) {
+                    if (sudokuGrid[abscissa][ordinate].value == value) {
+                        return true
+                    }
+                }
+            }
+
+            return false
+        }
+
+
+        for (i in 0 until 81) {
+            val row = i / 9
+            val col = i % 9
+
+            if (!sudokuGrid[row][col].visible) {
+                for (value in 1 until 10) {
+                    if (sudokuGrid[row].none { it.value == value }) {
+                        if (!valueInCol(col, value)) {
+                            if(!valueInSquare(3 * (row / 3), 3 * (col / 3), value)) {
+                                sudokuGrid[row][col].currentValue = value
+
+                                if (sudokuGrid.filter { it.none { it.visible } })
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
