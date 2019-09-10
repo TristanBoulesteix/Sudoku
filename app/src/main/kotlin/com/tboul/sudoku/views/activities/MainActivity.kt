@@ -28,7 +28,7 @@ class MainActivity : MainTemplateActivity() {
     }
 
     fun openGameActivity(@Suppress("UNUSED_PARAMETER") view: View) {
-        val gameActivity = Intent(this, GameActivity::class.java)
+        val gameActivity = Intent(this, LevelActivity::class.java)
         val transition = ActivityOptions.makeCustomAnimation(
             this@MainActivity,
             R.anim.transition_start,

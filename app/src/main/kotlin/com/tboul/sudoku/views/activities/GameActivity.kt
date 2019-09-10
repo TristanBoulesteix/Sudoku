@@ -17,7 +17,7 @@ import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
 class GameActivity : MainTemplateActivity() {
     private val gridView by lazy {
         GridView(
-            Grid(),
+            Grid(intent.getIntExtra("difficulty", 12)),
             findViewById(R.id.fab_menu),
             this
         )

@@ -4,7 +4,7 @@ import com.tboul.sudoku.models.factories.GridFactory
 import com.tboul.sudoku.utils.SUDOKU_SIZE
 import kotlin.math.floor
 
-class Grid {
+class Grid(difficulty: Int) {
     private var sudokuGrid: Array<Array<Cell>> = arrayOf()
 
     val valid: Boolean
@@ -35,7 +35,7 @@ class Grid {
 
         val randNum = { x: Int -> floor((Math.random() * x + 1)).toInt() }
 
-        var count = 12
+        var count = difficulty
 
         while (count != 0) {
             val cellId = randNum(SUDOKU_SIZE * SUDOKU_SIZE)
