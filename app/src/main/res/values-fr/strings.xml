@@ -16,4 +16,7 @@
     <string name="confirm_exit_game_message">Êtes-vous sûr de quitter ce jeu ? Vos progrès ne serons pas suvegardé.</string>
     <string name="confirm_exit_game_title">Quitter la partie</string>
     <string name="comming_soon">Á venir</string>
+    <string name="easy">Facile</string>
+    <string name="medium">Moyen</string>
+    <string name="hard">Difficile</string>
 </resources>

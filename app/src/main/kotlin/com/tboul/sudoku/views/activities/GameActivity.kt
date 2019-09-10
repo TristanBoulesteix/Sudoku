@@ -15,7 +15,13 @@ import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
 
 
 class GameActivity : MainTemplateActivity() {
-    private val gridView by lazy { GridView(Grid(), findViewById(R.id.fab_menu), this) }
+    private val gridView by lazy {
+        GridView(
+            Grid(),
+            findViewById(R.id.fab_menu),
+            this
+        )
+    }
 
     override fun actionOnBackConfirmed() {
         finish()
@@ -46,16 +52,6 @@ class GameActivity : MainTemplateActivity() {
         gridViewLayout.addView(gridView)
 
 
-        // fab action
-/*        findViewById<FloatingActionButton>(R.id.fab_settings).setOnClickListener {
-            val gameActivity = Intent(this@GameActivity, SettingsActivity::class.java)
-            val transition = ActivityOptions.makeCustomAnimation(
-                this@GameActivity,
-                R.anim.transition_start,
-                R.anim.trantion_end
-            ).toBundle()
-            startActivity(gameActivity, transition)
-        }*/
         findViewById<FloatingActionButton>(R.id.fab_home).setOnClickListener {
             val i = Intent(this, MainActivity::class.java)
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
