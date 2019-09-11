@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -18,8 +17,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PlayGamesAuthProvider
 import com.tboul.sudoku.R
 import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
-
-
 
 
 class MainActivity : MainTemplateActivity() {
@@ -64,9 +61,7 @@ class MainActivity : MainTemplateActivity() {
             val signInClient = GoogleSignIn.getClient(this, signInOptions)
             signInClient
                 .silentSignIn()
-                .addOnCompleteListener(
-                    this
-                ) { task ->
+                .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // The signed in account is stored in the task's result.
                         val signedInAccount = task.result
@@ -75,15 +70,19 @@ class MainActivity : MainTemplateActivity() {
                         // See [sign-in best practices](http://developers.google.com/games/services/checklist) for guidance on how and when to implement Interactive Sign-in,
                         // and [Performing Interactive Sign-in](http://developers.google.com/games/services/android/signin#performing_interactive_sign-in) for details on how to implement
                         // Interactive Sign-in.
-                        val signInClient1 = GoogleSignIn.getClient(
-                            this,
-                            GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN
-                        )
-                        val intent = signInClient1.signInIntent
-                        startActivityForResult(intent, 2)
+                       startSignIn()
                     }
                 }
         }
+    }
+
+    private fun startSignIn() {
+        val signInClient = GoogleSignIn.getClient(
+            this,
+            GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN
+        )
+        val intent = signInClient.signInIntent
+        startActivityForResult(intent, 2)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -98,8 +97,9 @@ class MainActivity : MainTemplateActivity() {
                 if (message == null || message.isEmpty()) {
                     message = "FAIL"
                 }
-                AlertDialog.Builder(this).setMessage(message)
-                    .setNeutralButton(android.R.string.ok, null).show()
+                /* AlertDialog.Builder(this).setMessage(message)
+                     .setNeutralButton(android.R.string.ok, null).show()*/
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show()
             }
         }
     }

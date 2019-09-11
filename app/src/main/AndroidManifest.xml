@@ -18,11 +18,6 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
         <activity
-                android:name=".views.activities.GoogleSignInActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:screenOrientation="portrait"
-                android:theme="@style/AppTheme.NoActionBar" />
-        <activity
                 android:name=".views.activities.LevelActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:screenOrientation="portrait"
@@ -54,6 +49,11 @@
         <meta-data
                 android:name="preloaded_fonts"
                 android:resource="@array/preloaded_fonts" />
+        <meta-data android:name="com.google.android.gms.games.APP_ID"
+                android:value="@string/app_id" />
+        <meta-data android:name="com.google.android.gms.version"
+                android:value="@integer/google_play_services_version"/>
+
     </application>
 
 </manifest>
