@@ -12,8 +12,8 @@ android {
         applicationId "com.tboul.sudoku"
         minSdkVersion 22
         targetSdkVersion 29
-        versionCode 5
-        versionName "ALPHA-3"
+        versionCode 6
+        versionName "ALPHA-4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -42,4 +42,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.github.clans:fab:1.6.4'
+    implementation 'com.google.firebase:firebase-auth:19.0.0'
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
 }
