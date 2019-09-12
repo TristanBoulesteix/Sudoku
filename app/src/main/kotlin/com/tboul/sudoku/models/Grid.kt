@@ -1,6 +1,12 @@
 package com.tboul.sudoku.models
 
-class Grid(private val sudokuGrid: Array<Array<Cell>>) {
+import com.tboul.sudoku.models.factories.GridFactory
+import com.tboul.sudoku.utils.SUDOKU_SIZE
+import kotlin.math.floor
+
+class Grid(difficulty: Int) {
+    private var sudokuGrid: Array<Array<Cell>> = arrayOf()
+
     val valid: Boolean
         get() {
             for (cells in sudokuGrid) {
@@ -13,6 +19,39 @@ class Grid(private val sudokuGrid: Array<Array<Cell>>) {
 
     var x = -1
     var y = -1
+
+    init {
+        val grid = GridFactory().grid
+
+        for (cells in grid) {
+            var line = arrayOf<Cell>()
+
+            for (element in cells) {
+                line += Cell(element)
+            }
+
+            sudokuGrid += line
+        }
+
+        val randNum = { x: Int -> floor((Math.random() * x + 1)).toInt() }
+
+        var count = difficulty
+
+        while (count != 0) {
+            val cellId = randNum(SUDOKU_SIZE * SUDOKU_SIZE)
+
+            val i = cellId / SUDOKU_SIZE
+            var j = cellId % 9
+
+            if (i == 9 || j == 9) continue
+            if (j != 0) j--
+
+            if (sudokuGrid[i][j].visible) {
+                count--
+                sudokuGrid[i][j].visible = false
+            }
+        }
+    }
 
     fun updateValue(value: Int) {
         this[x][y].currentValue = value

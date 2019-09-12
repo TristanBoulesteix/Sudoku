@@ -8,7 +8,7 @@ import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import com.github.clans.fab.FloatingActionButton
 import com.tboul.sudoku.R
-import com.tboul.sudoku.models.GridFactory
+import com.tboul.sudoku.models.Grid
 import com.tboul.sudoku.utils.dpToPx
 import com.tboul.sudoku.views.GridView
 import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
@@ -17,7 +17,7 @@ import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
 class GameActivity : MainTemplateActivity() {
     private val gridView by lazy {
         GridView(
-            GridFactory.getGrid(intent.getIntExtra("difficulty", 12)),
+            Grid(intent.getIntExtra("difficulty", 12)),
             findViewById(R.id.fab_menu),
             this
         )
