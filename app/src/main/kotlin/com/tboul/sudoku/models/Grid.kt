@@ -21,7 +21,7 @@ class Grid(difficulty: Int) {
     var y = -1
 
     init {
-        val grid = GridFactory().grid
+        val grid = GridFactory.grid
 
         for (cells in grid) {
             var line = arrayOf<Cell>()
