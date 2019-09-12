@@ -19,7 +19,7 @@ class Grid {
     var y = -1
 
     init {
-        val grid = GridFactory().grid
+        val grid = GridFactory.grid
 
         for (cells in grid) {
             var line = arrayOf<Cell>()
@@ -68,7 +68,7 @@ class Grid {
         return sudokuGrid[index]
     }
 
-    private fun solve() : Boolean {
+/*    private fun solve() : Boolean {
         fun valueInCol(col: Int, value: Int): Boolean {
             for (abscissa in 0 until 10)
                 if (sudokuGrid[abscissa][col].value == value) return true
@@ -106,5 +106,5 @@ class Grid {
                 }
             }
         }
-    }
+    }*/
 }

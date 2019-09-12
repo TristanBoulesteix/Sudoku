@@ -4,8 +4,8 @@ import com.tboul.sudoku.utils.SUDOKU_SIZE
 import kotlin.math.floor
 import kotlin.math.sqrt
 
-class GridFactory {
-    private val numColumnsAndRows = SUDOKU_SIZE
+object GridFactory {
+    private const val numColumnsAndRows = SUDOKU_SIZE
     private val squareRoot = sqrt(numColumnsAndRows.toDouble()).toInt()
 
     val grid = Array(numColumnsAndRows) { IntArray(numColumnsAndRows) }
