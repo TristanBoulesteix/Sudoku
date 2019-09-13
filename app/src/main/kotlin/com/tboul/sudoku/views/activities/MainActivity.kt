@@ -9,7 +9,6 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.squareup.picasso.Picasso
 import com.tboul.sudoku.R
 import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
 
@@ -36,9 +35,9 @@ class MainActivity : MainTemplateActivity() {
         get() = super.signedInAccount
         set(value) {
             if (value != null) {
-                Picasso.get().load(value.photoUrl).into(signInButton)
+                signInButton.setImageResource(R.mipmap.ic_game_achievements)
             } else {
-                signInButton.setImageResource(R.drawable.games_controller_white)
+                signInButton.setImageResource(R.mipmap.ic_game_controller)
             }
 
             super.signedInAccount = value
