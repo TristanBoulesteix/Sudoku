@@ -4,22 +4,22 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.FrameLayout
+import android.widget.ImageView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.squareup.picasso.Picasso
 import com.tboul.sudoku.R
 import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
 
 
-
-
 class MainActivity : MainTemplateActivity() {
+    private val signInButton by lazy { findViewById<ImageView>(R.id.play_game_signin_icon) }
+
     override fun actionOnBackConfirmed() = finish()
     override val confirmExitMessage by lazy { getString(R.string.confirm_exit_message) }
     override val confirmExitTitle by lazy { getString(R.string.confirm_exit_title) }
-
-    val button by lazy { findViewById<FrameLayout>(R.id.play_game_signin) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +31,18 @@ class MainActivity : MainTemplateActivity() {
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
     }
+
+    override var signedInAccount: GoogleSignInAccount?
+        get() = super.signedInAccount
+        set(value) {
+            if (value != null) {
+                Picasso.get().load(value.photoUrl).into(signInButton)
+            } else {
+                signInButton.setImageResource(R.drawable.games_controller_white)
+            }
+
+            super.signedInAccount = value
+        }
 
     fun openGameActivity(@Suppress("UNUSED_PARAMETER") view: View) {
         val gameActivity = Intent(this, LevelActivity::class.java)

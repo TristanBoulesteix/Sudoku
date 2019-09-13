@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
         tools:context=".views.activities.MainActivity">
 
@@ -23,7 +24,6 @@
 
     <FrameLayout
             android:id="@+id/help_button"
-            android:onClick="openHelpActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -32,6 +32,7 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
+            android:onClick="openHelpActivity"
             android:padding="4dp"
             android:visibility="visible"
             app:layout_constraintEnd_toStartOf="@+id/play_game_signin"
@@ -56,28 +57,30 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
+            android:onClick="logInOut"
             android:padding="4dp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toRightOf="@id/help_button"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="OnClick">
 
         <ImageView
+                android:id="@+id/play_game_signin_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/settings"
-                android:src="@mipmap/ic_settings" />
+                android:contentDescription="@string/sign_to_play_game" />
     </FrameLayout>
 
     <Button
             android:id="@+id/start_button"
-            android:onClick="openGameActivity"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/rounded_button"
+            android:onClick="openGameActivity"
             android:text="@string/normal_game"
             app:layout_constraintBottom_toTopOf="@id/button1"
             app:layout_constraintEnd_toEndOf="parent"

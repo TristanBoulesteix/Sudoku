@@ -19,4 +19,5 @@
     <string name="easy">Facile</string>
     <string name="medium">Moyen</string>
     <string name="hard">Difficile</string>
+    <string name="sign_to_play_game">Connection à Google Play jeux</string>
 </resources>

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
 import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,8 +17,14 @@ import com.tboul.sudoku.R
 import com.tboul.sudoku.utils.PREF_AUTO_LOGIN
 import com.tboul.sudoku.utils.PREF_LOGIN_FILE
 
+
 abstract class TemplateActivity : AppCompatActivity() {
-    private val pref: SharedPreferences by lazy { getSharedPreferences(PREF_LOGIN_FILE, Context.MODE_PRIVATE) }
+    private val pref: SharedPreferences by lazy {
+        getSharedPreferences(
+            PREF_LOGIN_FILE,
+            Context.MODE_PRIVATE
+        )
+    }
 
     private val signInOptions: GoogleSignInOptions by lazy {
         GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).requestProfile()
@@ -25,12 +32,23 @@ abstract class TemplateActivity : AppCompatActivity() {
             .build()
     }
 
-    private var signedInAccount: GoogleSignInAccount? = null
+    protected open var signedInAccount: GoogleSignInAccount? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         supportActionBar?.hide()
+    }
+
+    fun logInOut(view: View) {
+        if (signedInAccount != null) {
+            GoogleSignIn.getClient(this, signInOptions).signOut()
+            pref.edit().putBoolean(PREF_AUTO_LOGIN, false).apply()
+            signedInAccount = null
+        } else {
+            startSignIn()
+            pref.edit().putBoolean(PREF_AUTO_LOGIN, true).apply()
+        }
     }
 
     private fun signInSilently() {
@@ -94,6 +112,6 @@ abstract class TemplateActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if(pref.getBoolean(PREF_AUTO_LOGIN, true)) signInSilently()
+        if (pref.getBoolean(PREF_AUTO_LOGIN, true)) signInSilently()
     }
 }
