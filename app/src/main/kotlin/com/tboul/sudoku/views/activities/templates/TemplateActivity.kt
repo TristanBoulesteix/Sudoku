@@ -40,7 +40,7 @@ abstract class TemplateActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    fun logInOut(view: View) {
+    fun logInOut(@Suppress("UNUSED_PARAMETER") view: View) {
         if (signedInAccount != null) {
             GoogleSignIn.getClient(this, signInOptions).signOut()
             pref.edit().putBoolean(PREF_AUTO_LOGIN, false).apply()
