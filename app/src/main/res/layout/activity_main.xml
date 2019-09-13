@@ -34,7 +34,7 @@
             android:foreground="?android:attr/selectableItemBackground"
             android:padding="4dp"
             android:visibility="visible"
-            app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+            app:layout_constraintEnd_toStartOf="@+id/play_game_signin"
             app:layout_constraintLeft_toRightOf="@id/title"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="OnClick">
@@ -47,7 +47,7 @@
     </FrameLayout>
 
     <FrameLayout
-            android:id="@+id/frameLayout"
+            android:id="@+id/play_game_signin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

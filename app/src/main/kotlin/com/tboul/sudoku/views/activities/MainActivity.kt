@@ -4,12 +4,14 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.tboul.sudoku.R
 import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
+
+
 
 
 class MainActivity : MainTemplateActivity() {
@@ -17,13 +19,11 @@ class MainActivity : MainTemplateActivity() {
     override val confirmExitMessage by lazy { getString(R.string.confirm_exit_message) }
     override val confirmExitTitle by lazy { getString(R.string.confirm_exit_title) }
 
+    val button by lazy { findViewById<FrameLayout>(R.id.play_game_signin) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val signInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN)
-            .requestServerAuthCode(getString(R.string.default_web_client_id))
-            .build()
 
         MobileAds.initialize(this, "ca-app-pub-3910814368891137~8945215440")
 

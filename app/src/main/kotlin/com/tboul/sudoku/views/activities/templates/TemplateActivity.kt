@@ -1,6 +1,8 @@
 package com.tboul.sudoku.views.activities.templates
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Window
 import android.widget.Toast
@@ -9,9 +11,19 @@ import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.tboul.sudoku.BuildConfig
+import com.tboul.sudoku.R
+import com.tboul.sudoku.utils.PREF_AUTO_LOGIN
+import com.tboul.sudoku.utils.PREF_LOGIN_FILE
 
 abstract class TemplateActivity : AppCompatActivity() {
-    private val signInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).requestProfile().build()
+    private val pref: SharedPreferences by lazy { getSharedPreferences(PREF_LOGIN_FILE, Context.MODE_PRIVATE) }
+
+    private val signInOptions: GoogleSignInOptions by lazy {
+        GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).requestProfile()
+            .requestServerAuthCode(getString(R.string.default_web_client_id))
+            .build()
+    }
 
     private var signedInAccount: GoogleSignInAccount? = null
 
@@ -42,12 +54,8 @@ abstract class TemplateActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // The signed in account is stored in the task's result.
-                        val signedInAccount = task.result
+                        signedInAccount = task.result
                     } else {
-                        // Player will need to sign-in explicitly using via UI.
-                        // See [sign-in best practices](http://developers.google.com/games/services/checklist) for guidance on how and when to implement Interactive Sign-in,
-                        // and [Performing Interactive Sign-in](http://developers.google.com/games/services/android/signin#performing_interactive_sign-in) for details on how to implement
-                        // Interactive Sign-in.
                         startSignIn()
                     }
                 }
@@ -71,20 +79,21 @@ abstract class TemplateActivity : AppCompatActivity() {
                 // The signed in account is stored in the result.
                 signedInAccount = result.signInAccount
             } else {
-                var message = result.status.statusMessage
-                if (message == null || message.isEmpty()) {
-                    message = "FAIL"
+                if (BuildConfig.DEBUG) {
+                    var message = result.status.statusMessage
+                    if (message == null || message.isEmpty()) {
+                        message = "FAIL"
+                    }
+                    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
                 }
-                /* AlertDialog.Builder(this).setMessage(message)
-                     .setNeutralButton(android.R.string.ok, null).show()*/
-                Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+
+                pref.edit().putBoolean(PREF_AUTO_LOGIN, false).apply()
             }
         }
     }
 
     override fun onResume() {
         super.onResume()
-        signInSilently()
-        if(signedInAccount != null) Toast.makeText(this, signedInAccount!!.email, Toast.LENGTH_SHORT).show()
+        if(pref.getBoolean(PREF_AUTO_LOGIN, true)) signInSilently()
     }
 }
