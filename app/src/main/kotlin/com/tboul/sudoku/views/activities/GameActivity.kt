@@ -10,6 +10,7 @@ import com.github.clans.fab.FloatingActionButton
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.tboul.sudoku.R
 import com.tboul.sudoku.models.GridFactory
+import com.tboul.sudoku.utils.DIFFICULTY
 import com.tboul.sudoku.utils.dpToPx
 import com.tboul.sudoku.views.GridView
 import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
@@ -20,7 +21,7 @@ class GameActivity : MainTemplateActivity() {
     private val signInButton by lazy { findViewById<FloatingActionButton>(R.id.fab_play_game) }
     private val gridView by lazy {
         GridView(
-            GridFactory.getGrid(intent.getIntExtra("difficulty", 12)),
+            GridFactory.getGrid(intent.getSerializableExtra("difficulty") as DIFFICULTY),
             findViewById(R.id.fab_menu),
             this
         )

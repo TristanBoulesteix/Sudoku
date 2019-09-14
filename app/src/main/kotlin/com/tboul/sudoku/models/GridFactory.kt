@@ -1,5 +1,6 @@
 package com.tboul.sudoku.models
 
+import com.tboul.sudoku.utils.DIFFICULTY
 import com.tboul.sudoku.utils.SUDOKU_SIZE
 import kotlin.math.floor
 import kotlin.math.sqrt
@@ -7,7 +8,7 @@ import kotlin.math.sqrt
 object GridFactory {
     private val squareRoot = sqrt(SUDOKU_SIZE.toDouble()).toInt()
 
-    fun getGrid(difficulty: Int): Grid {
+    fun getGrid(difficulty: DIFFICULTY): Grid {
         var sudokuGrid: Array<Array<Cell>> = arrayOf()
 
         val gridStruct = Array(SUDOKU_SIZE) { IntArray(SUDOKU_SIZE) }
@@ -38,7 +39,7 @@ object GridFactory {
 
         val randNum = { x: Int -> floor((Math.random() * x + 1)).toInt() }
 
-        var count = difficulty
+        var count = difficulty.value
 
         while (count != 0) {
             val cellId = randNum(SUDOKU_SIZE * SUDOKU_SIZE)

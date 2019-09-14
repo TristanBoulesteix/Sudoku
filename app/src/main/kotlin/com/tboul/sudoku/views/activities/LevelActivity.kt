@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.tboul.sudoku.R
+import com.tboul.sudoku.utils.DIFFICULTY
 import com.tboul.sudoku.views.activities.templates.TemplateActivity
 
 class LevelActivity : TemplateActivity() {
@@ -20,7 +21,7 @@ class LevelActivity : TemplateActivity() {
             R.anim.transition_start,
             R.anim.trantion_end
         ).toBundle()
-        gameActivity.putExtra("difficulty", difficulty.value)
+        gameActivity.putExtra("difficulty", difficulty)
         startActivity(gameActivity, animation)
     }
 
@@ -34,10 +35,6 @@ class LevelActivity : TemplateActivity() {
 
     fun startHardGame(@Suppress("UNUSED_PARAMETER") view: View) {
         startGame(DIFFICULTY.HARD)
-    }
-
-    enum class DIFFICULTY(val value: Int) {
-        EASY(12), MEDIUM(16), HARD(22)
     }
 }
 

@@ -4,6 +4,10 @@
     <string name="app_id" translatable="false">391484123123</string>
     <!-- package_name -->
     <string name="package_name" translatable="false">com.tboul.sudoku</string>
-    <!-- achievement Win a game -->
-    <string name="achievement_win_a_game" translatable="false">CgkI88-WsrILEAIQAg</string>
+    <!-- achievement Win a game with an easy difficulty -->
+    <string name="achievement_win_a_game_with_an_easy_difficulty" translatable="false">CgkI88-WsrILEAIQAw</string>
+    <!-- achievement Win a game with a medium difficulty -->
+    <string name="achievement_win_a_game_with_a_medium_difficulty" translatable="false">CgkI88-WsrILEAIQBA</string>
+    <!-- achievement Win a game with a hard difficulty -->
+    <string name="achievement_win_a_game_with_a_hard_difficulty" translatable="false">CgkI88-WsrILEAIQBQ</string>
 </resources>
