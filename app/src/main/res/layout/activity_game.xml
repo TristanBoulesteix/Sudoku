@@ -1,127 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:fab="http://schemas.android.com/apk/res-auto">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".views.activities.GameActivity">
 
-    <data>
-        <variable
-                name="data"
-                type="com.tboul.sudoku.views.activities.GameActivity.Data" />
-    </data>
+    <FrameLayout
+            android:id="@+id/sudoku"
+            android:layout_width="match_parent"
+            android:layout_height="550dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
 
-    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    </FrameLayout>
+
+    <com.tboul.sudoku.views.components.FloatingActionMenuPlay
+            android:id="@+id/fab_menu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:context=".views.activities.GameActivity">
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingBottom="@dimen/activity_horizontal_margin"
+            fab:fab_shadowColor="#66000000"
+            fab:fab_showShadow="true"
+            fab:menu_colorNormal="@color/colorPrimary"
+            fab:menu_colorPressed="@color/colorPrimaryDark"
+            fab:menu_labels_ellipsize="end"
+            fab:menu_labels_maxLines="-1"
+            fab:menu_labels_position="left"
+            fab:menu_labels_showShadow="true"
+            fab:menu_labels_singleLine="true"
+            fab:menu_openDirection="up">
 
-        <FrameLayout
-                android:id="@+id/sudoku"
-                android:layout_width="match_parent"
-                android:layout_height="550dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
-
-        </FrameLayout>
-
-        <com.tboul.sudoku.views.components.FloatingActionMenuPlay
-                android:id="@+id/fab_menu"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:paddingStart="@dimen/activity_horizontal_margin"
-                android:paddingEnd="@dimen/activity_horizontal_margin"
-                android:paddingBottom="@dimen/activity_horizontal_margin"
-                fab:fab_shadowColor="#66000000"
-                fab:fab_showShadow="true"
-                fab:menu_colorNormal="@color/colorPrimary"
-                fab:menu_colorPressed="@color/colorPrimaryDark"
-                fab:menu_labels_ellipsize="end"
-                fab:menu_labels_maxLines="-1"
-                fab:menu_labels_position="left"
-                fab:menu_labels_showShadow="true"
-                fab:menu_labels_singleLine="true"
-                fab:menu_openDirection="up">
-
-            <com.github.clans.fab.FloatingActionButton
-                    android:id="@+id/fab_help"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="openHelpActivity"
-                    android:src="@mipmap/ic_help"
-                    fab:fab_colorNormal="@color/colorPrimary"
-                    fab:fab_colorPressed="@color/colorPrimaryDark"
-                    fab:fab_label="@string/help_fab_label"
-                    fab:fab_size="mini"
-                    tools:ignore="OnClick" />
-
-            <com.github.clans.fab.FloatingActionButton
-                    android:id="@+id/fab_new_game"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_reset"
-                    fab:fab_colorNormal="@color/colorPrimary"
-                    fab:fab_colorPressed="@color/colorPrimaryDark"
-                    fab:fab_label="@string/new_game_fab_label"
-                    fab:fab_size="mini" />
-
-            <com.github.clans.fab.FloatingActionButton
-                    android:id="@+id/fab_play_game"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    fab:fab_colorNormal="@color/colorPrimary"
-                    fab:fab_colorPressed="@color/colorPrimaryDark"
-                    fab:fab_label="test"
-                    label="@{data.playGameLabel}"
-                    fab:fab_size="mini" />
-
-            <com.github.clans.fab.FloatingActionButton
-                    android:id="@+id/fab_home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_home"
-                    fab:fab_colorNormal="@color/colorPrimary"
-                    fab:fab_colorPressed="@color/colorPrimaryDark"
-                    fab:fab_label="@string/home_fab_label"
-                    fab:fab_size="mini" />
-
-        </com.tboul.sudoku.views.components.FloatingActionMenuPlay>
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+        <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_help"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:orientation="horizontal">
+                android:onClick="openHelpActivity"
+                android:src="@mipmap/ic_help"
+                fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_colorPressed="@color/colorPrimaryDark"
+                fab:fab_label="@string/help_fab_label"
+                fab:fab_size="mini"
+                tools:ignore="OnClick" />
 
-            <Button
-                    android:id="@+id/button_restart"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="100dp"
-                    android:layout_marginBottom="24dp"
-                    android:background="@drawable/rounded_button"
-                    android:text="@string/restart_label"
-                    fab:layout_constraintBottom_toBottomOf="parent"
-                    fab:layout_constraintEnd_toEndOf="parent" />
+        <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_new_game"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_reset"
+                fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_colorPressed="@color/colorPrimaryDark"
+                fab:fab_label="@string/new_game_fab_label"
+                fab:fab_size="mini" />
 
-            <Button
-                    android:id="@+id/button_validate"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginEnd="55dp"
-                    android:layout_marginBottom="24dp"
-                    android:background="@drawable/rounded_button"
-                    android:text="@string/validate_label"
-                    fab:layout_constraintBottom_toBottomOf="parent"
-                    fab:layout_constraintEnd_toStartOf="@+id/button_restart"
-                    fab:layout_constraintStart_toStartOf="parent" />
+        <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_play_game"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_colorPressed="@color/colorPrimaryDark"
+                fab:fab_label="@string/common_signin_button_text_long"
+                fab:fab_size="mini" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_home"
+                fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_colorPressed="@color/colorPrimaryDark"
+                fab:fab_label="@string/home_fab_label"
+                fab:fab_size="mini" />
 
-    </RelativeLayout>
+    </com.tboul.sudoku.views.components.FloatingActionMenuPlay>
 
-</layout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+        <Button
+                android:id="@+id/button_restart"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/rounded_button"
+                android:text="@string/restart_label"
+                fab:layout_constraintBottom_toBottomOf="parent"
+                fab:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+                android:id="@+id/button_validate"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="55dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/rounded_button"
+                android:text="@string/validate_label"
+                fab:layout_constraintBottom_toBottomOf="parent"
+                fab:layout_constraintEnd_toStartOf="@+id/button_restart"
+                fab:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

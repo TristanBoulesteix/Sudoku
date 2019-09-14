@@ -6,12 +6,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.RelativeLayout
-import androidx.databinding.DataBindingUtil
 import com.github.clans.fab.FloatingActionButton
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.tboul.sudoku.BR
 import com.tboul.sudoku.R
-import com.tboul.sudoku.databinding.ActivityGameBinding
 import com.tboul.sudoku.models.GridFactory
 import com.tboul.sudoku.utils.dpToPx
 import com.tboul.sudoku.views.GridView
@@ -28,17 +25,15 @@ class GameActivity : MainTemplateActivity() {
         )
     }
 
-    private val dataBinded = Data()
-
     override var signedInAccount: GoogleSignInAccount?
         get() = super.signedInAccount
         set(value) {
             if (value != null) {
                 signInButton.setImageResource(R.mipmap.ic_game_achievements)
-                dataBinded.playGameLabel = "totooooo"
+                signInButton.labelText = getString(R.string.achievement)
             } else {
                 signInButton.setImageResource(R.mipmap.ic_game_controller)
-                dataBinded.playGameLabel = "tata"
+                signInButton.labelText = getString(R.string.sign_to_play_game)
             }
 
             super.signedInAccount = value
@@ -53,10 +48,7 @@ class GameActivity : MainTemplateActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivityGameBinding>(this, R.layout.activity_game)
-
-        binding.setVariable(BR.data, dataBinded)
-        binding.executePendingBindings()
+        setContentView(R.layout.activity_game)
 
         val gridViewLayout = findViewById<FrameLayout>(R.id.sudoku)
         with(gridViewLayout) {
@@ -87,6 +79,4 @@ class GameActivity : MainTemplateActivity() {
         findViewById<Button>(R.id.button_restart).setOnClickListener(gridView.resetClick)
         findViewById<Button>(R.id.button_validate).setOnClickListener(gridView.validateClick)
     }
-
-    data class Data(var playGameLabel: String = "toto")
 }

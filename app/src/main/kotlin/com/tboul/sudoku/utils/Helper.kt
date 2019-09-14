@@ -3,8 +3,6 @@ package com.tboul.sudoku.utils
 import android.content.Context
 import android.util.TypedValue
 import android.view.View
-import androidx.databinding.BindingAdapter
-import com.github.clans.fab.FloatingActionButton
 import com.tboul.sudoku.R
 
 fun View.dpToPx(dp: Number) =
@@ -40,9 +38,4 @@ fun getStringId(resName: String, c: Class<R.string>): Int {
         e.printStackTrace()
         -1
     }
-}
-
-@BindingAdapter("label")
-fun setFabLabel(view: FloatingActionButton, label: String) {
-    view.labelText = label
 }
