@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.View
 import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -40,15 +39,9 @@ abstract class TemplateActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    fun logInOut(@Suppress("UNUSED_PARAMETER") view: View) {
-        if (signedInAccount != null) {
-            GoogleSignIn.getClient(this, signInOptions).signOut()
-            pref.edit().putBoolean(PREF_AUTO_LOGIN, false).apply()
-            signedInAccount = null
-        } else {
+    fun logIn() {
             startSignIn()
             pref.edit().putBoolean(PREF_AUTO_LOGIN, true).apply()
-        }
     }
 
     private fun signInSilently() {

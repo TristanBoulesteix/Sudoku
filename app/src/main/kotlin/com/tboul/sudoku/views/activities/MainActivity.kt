@@ -4,6 +4,7 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -11,6 +12,7 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.tboul.sudoku.R
 import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
+import com.tboul.sudoku.views.play.services.showAchievements
 
 
 class MainActivity : MainTemplateActivity() {
@@ -34,10 +36,18 @@ class MainActivity : MainTemplateActivity() {
     override var signedInAccount: GoogleSignInAccount?
         get() = super.signedInAccount
         set(value) {
+            val parent = signInButton.parent as FrameLayout
+
             if (value != null) {
                 signInButton.setImageResource(R.mipmap.ic_game_achievements)
+                parent.setOnClickListener {
+                    showAchievements(this, value)
+                }
             } else {
                 signInButton.setImageResource(R.mipmap.ic_game_controller)
+                parent.setOnClickListener {
+                    logIn()
+                }
             }
 
             super.signedInAccount = value

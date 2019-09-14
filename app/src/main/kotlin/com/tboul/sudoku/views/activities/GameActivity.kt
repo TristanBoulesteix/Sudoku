@@ -13,6 +13,7 @@ import com.tboul.sudoku.models.GridFactory
 import com.tboul.sudoku.utils.dpToPx
 import com.tboul.sudoku.views.GridView
 import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
+import com.tboul.sudoku.views.play.services.showAchievements
 
 
 class GameActivity : MainTemplateActivity() {
@@ -31,6 +32,12 @@ class GameActivity : MainTemplateActivity() {
             if (value != null) {
                 signInButton.setImageResource(R.mipmap.ic_game_achievements)
                 signInButton.labelText = getString(R.string.achievement)
+                signInButton.setOnClickListener {
+                    showAchievements(
+                        this,
+                        value
+                    )
+                }
             } else {
                 signInButton.setImageResource(R.mipmap.ic_game_controller)
                 signInButton.labelText = getString(R.string.sign_to_play_game)
