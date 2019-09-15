@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
 import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ import com.tboul.sudoku.BuildConfig
 import com.tboul.sudoku.R
 import com.tboul.sudoku.utils.PREF_AUTO_LOGIN
 import com.tboul.sudoku.utils.PREF_LOGIN_FILE
+import com.tboul.sudoku.views.play.services.setViewForPopups
 
 
 abstract class TemplateActivity : AppCompatActivity() {
@@ -39,9 +41,8 @@ abstract class TemplateActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    fun logIn() {
-            startSignIn()
-            pref.edit().putBoolean(PREF_AUTO_LOGIN, true).apply()
+    fun logIn(@Suppress("UNUSED_PARAMETER") view: View? = null) {
+        startSignIn()
     }
 
     private fun signInSilently() {
@@ -89,6 +90,7 @@ abstract class TemplateActivity : AppCompatActivity() {
             if (result.isSuccess) {
                 // The signed in account is stored in the result.
                 signedInAccount = result.signInAccount
+                pref.edit().putBoolean(PREF_AUTO_LOGIN, true).apply()
             } else {
                 if (BuildConfig.DEBUG) {
                     var message = result.status.statusMessage
@@ -105,6 +107,7 @@ abstract class TemplateActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        if(signedInAccount != null) setViewForPopups(this, signedInAccount!!, findViewById(R.id.gps_popup))
         if (pref.getBoolean(PREF_AUTO_LOGIN, true)) signInSilently()
     }
 }

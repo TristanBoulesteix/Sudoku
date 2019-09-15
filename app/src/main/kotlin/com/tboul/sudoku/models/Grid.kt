@@ -1,6 +1,8 @@
 package com.tboul.sudoku.models
 
-class Grid(private val sudokuGrid: Array<Array<Cell>>) {
+import com.tboul.sudoku.utils.DIFFICULTY
+
+class Grid(private val sudokuGrid: Array<Array<Cell>>, val difficulty: DIFFICULTY) {
     val valid: Boolean
         get() {
             for (cells in sudokuGrid) {

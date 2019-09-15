@@ -20,7 +20,7 @@ fun String.concatenated(context: Context): String {
         val indexEnd = concatenated.indexOf("@")
         val res = concatenated.substring(indexStart + 1, indexEnd)
 
-           concatenated = concatenated.replaceRange(
+        concatenated = concatenated.replaceRange(
             indexStart,
             indexEnd + 1,
             context.getString(getStringId(res, R.string::class.java))

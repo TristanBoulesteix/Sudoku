@@ -56,7 +56,7 @@ object GridFactory {
             }
         }
 
-        return Grid(sudokuGrid)
+        return Grid(sudokuGrid, difficulty)
     }
 
     private fun fillDiagonal(gridStruct: Array<IntArray>) {

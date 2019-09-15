@@ -36,16 +36,16 @@ class MainActivity : MainTemplateActivity() {
     override var signedInAccount: GoogleSignInAccount?
         get() = super.signedInAccount
         set(value) {
-            val parent = signInButton.parent as FrameLayout
+            val parentSignInButton = signInButton.parent as FrameLayout
 
             if (value != null) {
                 signInButton.setImageResource(R.mipmap.ic_game_achievements)
-                parent.setOnClickListener {
+                parentSignInButton.setOnClickListener {
                     showAchievements(this, value)
                 }
             } else {
                 signInButton.setImageResource(R.mipmap.ic_game_controller)
-                parent.setOnClickListener {
+                parentSignInButton.setOnClickListener {
                     logIn()
                 }
             }

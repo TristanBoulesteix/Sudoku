@@ -18,12 +18,14 @@ import android.widget.Toast
 import com.github.clans.fab.FloatingActionMenu
 import com.tboul.sudoku.R
 import com.tboul.sudoku.models.Grid
+import com.tboul.sudoku.utils.DIFFICULTY
 
 
 @SuppressLint("ViewConstructor")
 class GridView(
     private val grid: Grid,
     private val fabMenu: FloatingActionMenu,
+    private val unlockAchievement: (achievement: String?) -> Unit,
     context: Context?,
     attrs: AttributeSet? = null
 ) :
@@ -58,7 +60,12 @@ class GridView(
         validate = true
         postInvalidate()
         if (grid.valid) {
-            Toast.makeText(context, "Sudoku complété !", Toast.LENGTH_SHORT).show()
+            val difficulty = when(grid.difficulty) {
+                DIFFICULTY.EASY -> R.string.achievement_win_a_game_with_an_easy_difficulty
+                DIFFICULTY.MEDIUM -> R.string.achievement_win_a_game_with_a_medium_difficulty
+                DIFFICULTY.HARD -> R.string.achievement_win_a_game_with_a_hard_difficulty
+            }
+            unlockAchievement(context?.getString(difficulty))
             buttonValidate.text = context?.getString(R.string.new_game_fab_label)
             buttonValidate.setOnClickListener(restartClick)
         }

@@ -7,6 +7,8 @@
         android:orientation="vertical"
         tools:context=".views.activities.LevelActivity">
 
+    <include layout="@layout/play_notifications_layout"/>
+
     <Button
             android:id="@+id/easy"
             android:onClick="startEasyGame"

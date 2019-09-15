@@ -15,6 +15,7 @@ import com.tboul.sudoku.utils.dpToPx
 import com.tboul.sudoku.views.GridView
 import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
 import com.tboul.sudoku.views.play.services.showAchievements
+import com.tboul.sudoku.views.play.services.unlockAchievements
 
 
 class GameActivity : MainTemplateActivity() {
@@ -23,8 +24,13 @@ class GameActivity : MainTemplateActivity() {
         GridView(
             GridFactory.getGrid(intent.getSerializableExtra("difficulty") as DIFFICULTY),
             findViewById(R.id.fab_menu),
+            ::achievementUnlocked,
             this
         )
+    }
+
+    private fun achievementUnlocked(achievement: String?) {
+        if (signedInAccount != null && achievement != null) unlockAchievements(this, signedInAccount!!, achievement)
     }
 
     override var signedInAccount: GoogleSignInAccount?
@@ -41,6 +47,9 @@ class GameActivity : MainTemplateActivity() {
                 }
             } else {
                 signInButton.setImageResource(R.mipmap.ic_game_controller)
+                signInButton.setOnClickListener {
+                    logIn()
+                }
                 signInButton.labelText = getString(R.string.sign_to_play_game)
             }
 

@@ -8,6 +8,8 @@
         android:orientation="vertical"
         tools:context=".views.activities.MainActivity">
 
+    <include layout="@layout/play_notifications_layout"/>
+
     <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -49,6 +51,7 @@
 
     <FrameLayout
             android:id="@+id/play_game_signin"
+            android:onClick="logIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -68,7 +71,8 @@
                 android:id="@+id/play_game_signin_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/sign_to_play_game" />
+                android:contentDescription="@string/sign_to_play_game"
+                android:src="@mipmap/ic_game_controller"/>
     </FrameLayout>
 
     <Button
