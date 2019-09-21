@@ -34,7 +34,7 @@
             <br>
             <br>
             Pour entrer un nombre dans une case, vous devez&nbsp;:<br>
-            <b>1.</b> Sélectionner la case du Sudoku que vous vouler remplir en cliquant dessus. Les cases que vous pouvez modifier possèdent un fond blanc.<br>
+            <b>1.</b> Sélectionner la case du Sudoku que vous voulez remplir en cliquant dessus. Les cases que vous pouvez modifier possèdent un fond blanc.<br>
             <img src="sudoku_example"><br>
             <b>2.</b> Cliquer sur l\'un des nombres de 1 à 9 en dessous pour mettre la valeur désirée.<br>
             <img src="sudoku_bottom_button"><br>
