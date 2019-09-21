@@ -36,4 +36,44 @@ class Grid(private val sudokuGrid: Array<Array<Cell>>, val difficulty: DIFFICULT
     operator fun get(index: Int): Array<Cell> {
         return sudokuGrid[index]
     }
+
+/*    private fun solve() : Boolean {
+        fun valueInCol(col: Int, value: Int): Boolean {
+            for (abscissa in 0 until 10)
+                if (sudokuGrid[abscissa][col].value == value) return true
+            return false
+        }
+
+        fun valueInSquare(abs: Int, ord: Int, value: Int): Boolean {
+            for (abscissa in abs until abs + 3) {
+                for (ordinate in ord until ord + 3) {
+                    if (sudokuGrid[abscissa][ordinate].value == value) {
+                        return true
+                    }
+                }
+            }
+
+            return false
+        }
+
+
+        for (i in 0 until 81) {
+            val row = i / 9
+            val col = i % 9
+
+            if (!sudokuGrid[row][col].visible) {
+                for (value in 1 until 10) {
+                    if (sudokuGrid[row].none { it.value == value }) {
+                        if (!valueInCol(col, value)) {
+                            if(!valueInSquare(3 * (row / 3), 3 * (col / 3), value)) {
+                                sudokuGrid[row][col].currentValue = value
+
+                                if (sudokuGrid.filter { it.none { it.visible } })
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }*/
 }
