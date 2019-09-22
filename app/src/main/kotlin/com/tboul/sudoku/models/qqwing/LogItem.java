@@ -83,7 +83,7 @@ public class LogItem {
 	 */
 	public int getRow() {
 		if (position <= -1) return -1;
-		return QQWing.cellToRow(position) + 1;
+		return QQWing.Companion.cellToRow(position) + 1;
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class LogItem {
 	 */
 	public int getColumn() {
 		if (position <= -1) return -1;
-		return QQWing.cellToColumn(position) + 1;
+		return QQWing.Companion.cellToColumn(position) + 1;
 	}
 
 	/**
