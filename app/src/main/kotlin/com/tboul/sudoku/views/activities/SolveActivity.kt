@@ -6,6 +6,7 @@ import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import com.tboul.sudoku.R
 import com.tboul.sudoku.models.Grid
+import com.tboul.sudoku.utils.DIFFICULTY
 import com.tboul.sudoku.utils.dpToPx
 import com.tboul.sudoku.views.GridView
 import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
@@ -13,8 +14,9 @@ import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
 class SolveActivity : MainTemplateActivity() {
     private val gridView by lazy {
         GridView(
-            Grid(intent.getIntExtra("difficulty", 12)),
+            Grid(),
             findViewById(R.id.fab_menu),
+            {},
             this
         )
     }

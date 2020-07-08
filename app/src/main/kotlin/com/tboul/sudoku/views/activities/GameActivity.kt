@@ -10,6 +10,7 @@ import com.github.clans.fab.FloatingActionButton
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.tboul.sudoku.R
 import com.tboul.sudoku.models.Grid
+import com.tboul.sudoku.utils.DIFFICULTY
 import com.tboul.sudoku.utils.dpToPx
 import com.tboul.sudoku.views.GridView
 import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
@@ -21,7 +22,7 @@ class GameActivity : MainTemplateActivity() {
     private val signInButton by lazy { findViewById<FloatingActionButton>(R.id.fab_play_game) }
     private val gridView by lazy {
         GridView(
-            GridFactory.getGrid(intent.getSerializableExtra("difficulty") as DIFFICULTY),
+            Grid(intent.getSerializableExtra("difficulty") as DIFFICULTY),
             findViewById(R.id.fab_menu),
             ::achievementUnlocked,
             this
@@ -54,10 +55,6 @@ class GameActivity : MainTemplateActivity() {
 
             super.signedInAccount = value
         }
-
-    override fun actionOnBackConfirmed() {
-        finish()
-    }
 
     override val confirmExitMessage: String by lazy { getString(R.string.confirm_exit_game_message) }
     override val confirmExitTitle: String by lazy { getString(R.string.confirm_exit_game_title) }

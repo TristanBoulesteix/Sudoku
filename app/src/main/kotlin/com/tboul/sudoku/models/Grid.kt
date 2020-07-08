@@ -1,10 +1,11 @@
 package com.tboul.sudoku.models
 
+import com.tboul.sudoku.utils.DIFFICULTY
 import com.tboul.sudoku.utils.SUDOKU_SIZE
 import kotlin.math.floor
 import kotlin.math.sqrt
 
-class Grid(difficulty: Int) {
+class Grid(val difficulty: DIFFICULTY = DIFFICULTY.EASY) {
     private var grid = Array(SUDOKU_SIZE) {
         Array(SUDOKU_SIZE) { Cell.emptyCell }
     }
@@ -124,7 +125,7 @@ class Grid(difficulty: Int) {
         }
         println()
 
-        var count = difficulty
+        var count = difficulty.value
 
         while (count != 0) {
             val cellId = floor((Math.random() * (SUDOKU_SIZE * SUDOKU_SIZE) + 1)).toInt()

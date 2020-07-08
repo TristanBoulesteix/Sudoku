@@ -86,21 +86,22 @@ abstract class TemplateActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 2) {
-            val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
-            if (result.isSuccess) {
-                // The signed in account is stored in the result.
-                signedInAccount = result.signInAccount
-                pref.edit().putBoolean(PREF_AUTO_LOGIN, true).apply()
-            } else {
-                if (BuildConfig.DEBUG) {
-                    var message = result.status.statusMessage
-                    if (message == null || message.isEmpty()) {
-                        message = "FAIL"
+            Auth.GoogleSignInApi.getSignInResultFromIntent(data)?.let {
+                if (it.isSuccess) {
+                    // The signed in account is stored in the result.
+                    signedInAccount = it.signInAccount
+                    pref.edit().putBoolean(PREF_AUTO_LOGIN, true).apply()
+                } else {
+                    if (BuildConfig.DEBUG) {
+                        var message = it.status.statusMessage
+                        if (message == null || message.isEmpty()) {
+                            message = "FAIL"
+                        }
+                        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
                     }
-                    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-                }
 
-                pref.edit().putBoolean(PREF_AUTO_LOGIN, false).apply()
+                    pref.edit().putBoolean(PREF_AUTO_LOGIN, false).apply()
+                }
             }
         }
     }

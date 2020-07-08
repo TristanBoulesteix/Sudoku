@@ -59,7 +59,7 @@ class GridView(
     val validateClick = OnClickListener {
         validate = true
         postInvalidate()
-        if (grid.valid) {
+        if (grid.isValid) {
             val difficulty = when(grid.difficulty) {
                 DIFFICULTY.EASY -> R.string.achievement_win_a_game_with_an_easy_difficulty
                 DIFFICULTY.MEDIUM -> R.string.achievement_win_a_game_with_a_medium_difficulty
