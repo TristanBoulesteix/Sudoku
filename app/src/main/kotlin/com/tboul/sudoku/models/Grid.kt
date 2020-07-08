@@ -1,15 +1,19 @@
 package com.tboul.sudoku.models
 
-import com.tboul.sudoku.models.factories.GridFactory
 import com.tboul.sudoku.utils.SUDOKU_SIZE
 import kotlin.math.floor
+import kotlin.math.sqrt
 
 class Grid(difficulty: Int) {
-    private var sudokuGrid = arrayOf<Array<Cell>>()
+    private var grid = Array(SUDOKU_SIZE) {
+        Array(SUDOKU_SIZE) { Cell.emptyCell }
+    }
 
-    val valid: Boolean
+    private val squareRoot = sqrt(SUDOKU_SIZE.toDouble()).toInt()
+
+    val isValid: Boolean
         get() {
-            for (cells in sudokuGrid) {
+            for (cells in grid) {
                 for (cell in cells) {
                     if (!cell.valid && !cell.visible) return false
                 }
@@ -21,24 +25,109 @@ class Grid(difficulty: Int) {
     var y = -1
 
     init {
-        val grid = GridFactory.grid
-
-        for (cells in grid) {
-            var line = arrayOf<Cell>()
-
-            for (num in cells) {
-                line += Cell(num)
-            }
-
-            sudokuGrid += line
+        fun unUsedInRow(i: Int, num: Int): Boolean {
+            for (j in 0 until SUDOKU_SIZE)
+                if (this[i][j].value == num)
+                    return false
+            return true
         }
 
-        val randNum = { x: Int -> floor((Math.random() * x + 1)).toInt() }
+        fun unUsedInCol(j: Int, num: Int): Boolean {
+            for (i in 0 until SUDOKU_SIZE)
+                if (this[i][j].value == num)
+                    return false
+            return true
+        }
+
+        fun unUsedInBox(
+            rowStart: Int,
+            colStart: Int,
+            num: Int
+        ): Boolean {
+            for (i in 0 until squareRoot) {
+                for (j in 0 until squareRoot) {
+                    if (this[rowStart + i][colStart + j].value == num) return false
+                }
+            }
+            return true
+        }
+
+        fun fillRemaining(x: Int, y: Int): Boolean {
+            var i = x
+            var j = y
+
+            if (j >= SUDOKU_SIZE && i < SUDOKU_SIZE - 1) {
+                i += 1
+                j = 0
+            }
+            if (i >= SUDOKU_SIZE && j >= SUDOKU_SIZE)
+                return true
+
+            if (i < squareRoot) {
+                if (j < squareRoot)
+                    j = squareRoot
+            } else if (i < SUDOKU_SIZE - squareRoot) {
+                if (j == i / squareRoot * squareRoot)
+                    j += squareRoot
+            } else {
+                if (j == SUDOKU_SIZE - squareRoot) {
+                    i += 1
+                    j = 0
+                    if (i >= SUDOKU_SIZE)
+                        return true
+                }
+            }
+
+            for (num in 1..SUDOKU_SIZE) {
+                if (unUsedInRow(i, num) &&
+                    unUsedInCol(j, num) &&
+                    unUsedInBox(
+                        i - i % squareRoot,
+                        j - j % squareRoot,
+                        num
+                    )
+                ) {
+                    this[i][j] = Cell(num)
+                    if (fillRemaining(i, j + 1))
+                        return true
+
+                    this[i][j] = Cell.emptyCell
+                }
+            }
+            return false
+        }
+
+        // Fill diagonals
+        var index = 0
+        while (index < SUDOKU_SIZE) {
+            var num: Int
+            for (i in 0 until squareRoot) {
+                for (j in 0 until squareRoot) {
+                    do {
+                        num = floor(Math.random() * SUDOKU_SIZE + 1).toInt()
+                    } while (!unUsedInBox(index, index, num))
+
+                    this[index + i][index + j] = Cell(num)
+                }
+            }
+
+            index += squareRoot
+        }
+
+        // Fill remaining
+        fillRemaining(0, squareRoot)
+
+        for (i in 0 until SUDOKU_SIZE) {
+            for (j in 0 until SUDOKU_SIZE)
+                print(this[i][j].toString() + " ")
+            println()
+        }
+        println()
 
         var count = difficulty
 
         while (count != 0) {
-            val cellId = randNum(SUDOKU_SIZE * SUDOKU_SIZE)
+            val cellId = floor((Math.random() * (SUDOKU_SIZE * SUDOKU_SIZE) + 1)).toInt()
 
             val i = cellId / SUDOKU_SIZE
             var j = cellId % 9
@@ -46,9 +135,9 @@ class Grid(difficulty: Int) {
             if (i == 9 || j == 9) continue
             if (j != 0) j--
 
-            if (sudokuGrid[i][j].visible) {
+            if (this.grid[i][j].visible) {
                 count--
-                sudokuGrid[i][j].visible = false
+                this.grid[i][j].visible = false
             }
         }
     }
@@ -66,21 +155,21 @@ class Grid(difficulty: Int) {
         y = -1
     }
 
-    operator fun get(index: Int) = sudokuGrid[index]
+    operator fun get(index: Int) = grid[index]
 
     fun solve() {
         forEachCells {
-            if(!this.visible) {
-                for(k in 0..SUDOKU_SIZE) {
+            if (!this.visible) {
+                for (k in 0..SUDOKU_SIZE) {
                     this.currentValue = k
-                    
+
                 }
             }
         }
     }
 
     private fun forEachCells(action: Cell.() -> Unit) {
-        for (cells in sudokuGrid) {
+        for (cells in grid) {
             for (cell in cells) {
                 cell.action()
             }

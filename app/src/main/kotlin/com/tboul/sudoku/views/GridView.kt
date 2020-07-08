@@ -57,7 +57,7 @@ class GridView(
     val validateClick = OnClickListener {
         validate = true
         postInvalidate()
-        if (grid.valid) {
+        if (grid.isValid) {
             Toast.makeText(context, "Sudoku complété !", Toast.LENGTH_SHORT).show()
             buttonValidate.text = context?.getString(R.string.new_game_fab_label)
             buttonValidate.setOnClickListener(restartClick)
