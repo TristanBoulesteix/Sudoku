@@ -5,7 +5,7 @@ import com.tboul.sudoku.utils.SUDOKU_SIZE
 import kotlin.math.floor
 
 class Grid(difficulty: Int) {
-    private var sudokuGrid: Array<Array<Cell>> = arrayOf()
+    private var sudokuGrid = arrayOf<Array<Cell>>()
 
     val valid: Boolean
         get() {
@@ -21,13 +21,13 @@ class Grid(difficulty: Int) {
     var y = -1
 
     init {
-        val grid = GridFactory().grid
+        val grid = GridFactory.grid
 
         for (cells in grid) {
             var line = arrayOf<Cell>()
 
-            for (element in cells) {
-                line += Cell(element)
+            for (num in cells) {
+                line += Cell(num)
             }
 
             sudokuGrid += line
@@ -57,12 +57,8 @@ class Grid(difficulty: Int) {
         this[x][y].currentValue = value
     }
 
-    fun clearCells() {
-        for (cells in sudokuGrid) {
-            for (cell in cells) {
-                if (!cell.visible) cell.currentValue = 0
-            }
-        }
+    fun clearCells() = forEachCells {
+        if (!this.visible) this.currentValue = 0
     }
 
     fun resetPosition() {
@@ -70,7 +66,24 @@ class Grid(difficulty: Int) {
         y = -1
     }
 
-    operator fun get(index: Int): Array<Cell> {
-        return sudokuGrid[index]
+    operator fun get(index: Int) = sudokuGrid[index]
+
+    fun solve() {
+        forEachCells {
+            if(!this.visible) {
+                for(k in 0..SUDOKU_SIZE) {
+                    this.currentValue = k
+                    
+                }
+            }
+        }
+    }
+
+    private fun forEachCells(action: Cell.() -> Unit) {
+        for (cells in sudokuGrid) {
+            for (cell in cells) {
+                cell.action()
+            }
+        }
     }
 }

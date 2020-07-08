@@ -1,20 +1,16 @@
 package com.tboul.sudoku.views.activities
 
-import android.content.Intent
 import android.graphics.Point
 import android.os.Bundle
-import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.RelativeLayout
-import com.github.clans.fab.FloatingActionButton
 import com.tboul.sudoku.R
 import com.tboul.sudoku.models.Grid
 import com.tboul.sudoku.utils.dpToPx
 import com.tboul.sudoku.views.GridView
 import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
 
-
-class GameActivity : MainTemplateActivity() {
+class SolveActivity : MainTemplateActivity() {
     private val gridView by lazy {
         GridView(
             Grid(intent.getIntExtra("difficulty", 12)),
@@ -30,7 +26,7 @@ class GameActivity : MainTemplateActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game)
+        setContentView(R.layout.activity_solve)
 
         with(findViewById<FrameLayout>(R.id.sudoku)) {
             val size = Point()
@@ -47,17 +43,5 @@ class GameActivity : MainTemplateActivity() {
             layoutParams = params
             addView(gridView)
         }
-
-        findViewById<FloatingActionButton>(R.id.fab_home).setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(i)
-        }
-
-        findViewById<FloatingActionButton>(R.id.fab_new_game).setOnClickListener(gridView.restartClick)
-
-        // buttons actions
-        findViewById<Button>(R.id.button_restart).setOnClickListener(gridView.resetClick)
-        findViewById<Button>(R.id.button_validate).setOnClickListener(gridView.validateClick)
     }
 }

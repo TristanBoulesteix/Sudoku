@@ -4,33 +4,37 @@ import com.tboul.sudoku.utils.SUDOKU_SIZE
 import kotlin.math.floor
 import kotlin.math.sqrt
 
-class GridFactory {
-    private val numColumnsAndRows = SUDOKU_SIZE
+object GridFactory {
+    private const val numColumnsAndRows = SUDOKU_SIZE
     private val squareRoot = sqrt(numColumnsAndRows.toDouble()).toInt()
 
-    val grid = Array(numColumnsAndRows) { IntArray(numColumnsAndRows) }
+    val grid: Array<IntArray>
+        get() {
+            val gridToBuild = Array(numColumnsAndRows) { IntArray(numColumnsAndRows) }
 
-    init {
-        fillDiagonal()
-        fillRemaining(0, squareRoot)
+            fillDiagonal(gridToBuild)
+            fillRemaining(gridToBuild, 0, squareRoot)
 
-        for (i in 0 until numColumnsAndRows) {
-            for (j in 0 until numColumnsAndRows)
-                print(grid[i][j].toString() + " ")
+            for (i in 0 until numColumnsAndRows) {
+                for (j in 0 until numColumnsAndRows)
+                    print(gridToBuild[i][j].toString() + " ")
+                println()
+            }
             println()
-        }
-        println()
-    }
 
-    private fun fillDiagonal() {
+            return gridToBuild
+        }
+
+
+    private fun fillDiagonal(gridToBuild: Array<IntArray>) {
         var i = 0
         while (i < numColumnsAndRows) {
-            fillBox(i, i)
+            fillBox(gridToBuild, i, i)
             i += squareRoot
         }
     }
 
-    private fun fillRemaining(x: Int, y: Int): Boolean {
+    private fun fillRemaining(gridToBuild: Array<IntArray>, x: Int, y: Int): Boolean {
         var i = x
         var j = y
 
@@ -57,46 +61,46 @@ class GridFactory {
         }
 
         for (num in 1..numColumnsAndRows) {
-            if (checkIfSafe(i, j, num)) {
-                grid[i][j] = num
-                if (fillRemaining(i, j + 1))
+            if (checkIfSafe(gridToBuild, i, j, num)) {
+                gridToBuild[i][j] = num
+                if (fillRemaining(gridToBuild, i, j + 1))
                     return true
 
-                grid[i][j] = 0
+                gridToBuild[i][j] = 0
             }
         }
         return false
     }
 
-    private fun checkIfSafe(i: Int, j: Int, num: Int): Boolean {
-        return unUsedInRow(i, num) &&
-                unUsedInCol(j, num) &&
-                unUsedInBox(i - i % squareRoot, j - j % squareRoot, num)
+    private fun checkIfSafe(gridToBuild: Array<IntArray>, i: Int, j: Int, num: Int): Boolean {
+        return unUsedInRow(gridToBuild, i, num) &&
+                unUsedInCol(gridToBuild, j, num) &&
+                unUsedInBox(gridToBuild, i - i % squareRoot, j - j % squareRoot, num)
     }
 
-    private fun unUsedInRow(i: Int, num: Int): Boolean {
+    private fun unUsedInRow(gridToBuild: Array<IntArray>, i: Int, num: Int): Boolean {
         for (j in 0 until numColumnsAndRows)
-            if (grid[i][j] == num)
+            if (gridToBuild[i][j] == num)
                 return false
         return true
     }
 
-    private fun unUsedInCol(j: Int, num: Int): Boolean {
+    private fun unUsedInCol(gridToBuild: Array<IntArray>, j: Int, num: Int): Boolean {
         for (i in 0 until numColumnsAndRows)
-            if (grid[i][j] == num)
+            if (gridToBuild[i][j] == num)
                 return false
         return true
     }
 
-    private fun fillBox(row: Int, col: Int) {
+    private fun fillBox(gridToBuild: Array<IntArray>, row: Int, col: Int) {
         var num: Int
         for (i in 0 until squareRoot) {
             for (j in 0 until squareRoot) {
                 do {
                     num = randomGenerator(numColumnsAndRows)
-                } while (!unUsedInBox(row, col, num))
+                } while (!unUsedInBox(gridToBuild, row, col, num))
 
-                grid[row + i][col + j] = num
+                gridToBuild[row + i][col + j] = num
             }
         }
     }
@@ -105,10 +109,15 @@ class GridFactory {
         return floor(Math.random() * num + 1).toInt()
     }
 
-    private fun unUsedInBox(rowStart: Int, colStart: Int, num: Int): Boolean {
+    private fun unUsedInBox(
+        gridToBuild: Array<IntArray>,
+        rowStart: Int,
+        colStart: Int,
+        num: Int
+    ): Boolean {
         for (i in 0 until squareRoot) {
             for (j in 0 until squareRoot) {
-                if (grid[rowStart + i][colStart + j] == num) return false
+                if (gridToBuild[rowStart + i][colStart + j] == num) return false
             }
         }
         return true
