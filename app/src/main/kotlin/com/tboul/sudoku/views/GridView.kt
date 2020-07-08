@@ -66,6 +66,7 @@ class GridView(
                 DIFFICULTY.HARD -> R.string.achievement_win_a_game_with_a_hard_difficulty
             }
             unlockAchievement(context?.getString(difficulty))
+            Toast.makeText(context, "Sudoku complété !", Toast.LENGTH_SHORT).show()
             buttonValidate.text = context?.getString(R.string.new_game_fab_label)
             buttonValidate.setOnClickListener(restartClick)
         }

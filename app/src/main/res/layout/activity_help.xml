@@ -53,6 +53,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/play_mode_text" />
 
+<!--        <com.tboul.sudoku.views.components.HtmlTextView
+                android:id="@+id/play_mode_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/play_mode_text" />-->
+
     </LinearLayout>
 
 
