@@ -86,20 +86,6 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-                android:id="@+id/start_button"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/rounded_button"
-                android:onClick="openGameActivity"
-                android:text="@string/normal_game"
-                app:layout_constraintBottom_toTopOf="@id/button1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
                 android:id="@+id/button1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
