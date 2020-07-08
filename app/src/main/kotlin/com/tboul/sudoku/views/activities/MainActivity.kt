@@ -1,5 +1,6 @@
 package com.tboul.sudoku.views.activities
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -25,8 +26,7 @@ class MainActivity : MainTemplateActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //MobileAds.initialize(this, "ca-app-pub-3910814368891137~8945215440")
-        MobileAds.initialize(this)
+        MobileAds.initialize(this, "ca-app-pub-3910814368891137~8945215440")
 
         val adView = findViewById<AdView>(R.id.adView)
         val adRequest = AdRequest.Builder().build()
@@ -53,8 +53,13 @@ class MainActivity : MainTemplateActivity() {
             super.signedInAccount = value
         }
 
-    fun openGameActivity(@Suppress("UNUSED_PARAMETER") view: View) =
-        startNewActivity(Intent(this, LevelActivity::class.java))
-
-    fun openSolveActivity(@Suppress("UNUSED_PARAMETER") view: View) = startNewActivity(Intent(this, SolveActivity::class.java))
+    fun openGameActivity(@Suppress("UNUSED_PARAMETER") view: View) {
+        val gameActivity = Intent(this, LevelActivity::class.java)
+        val transition = ActivityOptions.makeCustomAnimation(
+            this@MainActivity,
+            R.anim.transition_start,
+            R.anim.trantion_end
+        ).toBundle()
+        startActivity(gameActivity, transition)
+    }
 }

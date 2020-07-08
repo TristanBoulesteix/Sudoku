@@ -17,7 +17,7 @@ class LevelActivity : TemplateActivity() {
     private fun startGame(difficulty: DIFFICULTY) {
         val gameActivity = Intent(this, GameActivity::class.java)
         val animation = ActivityOptions.makeCustomAnimation(
-            this,
+            this@LevelActivity,
             R.anim.transition_start,
             R.anim.trantion_end
         ).toBundle()
