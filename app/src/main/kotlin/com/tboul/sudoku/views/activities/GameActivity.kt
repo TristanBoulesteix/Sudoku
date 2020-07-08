@@ -9,7 +9,8 @@ import android.widget.RelativeLayout
 import com.github.clans.fab.FloatingActionButton
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.tboul.sudoku.R
-import com.tboul.sudoku.models.Grid
+import com.tboul.sudoku.models.GridFactory
+import com.tboul.sudoku.utils.DIFFICULTY
 import com.tboul.sudoku.utils.dpToPx
 import com.tboul.sudoku.views.GridView
 import com.tboul.sudoku.views.activities.templates.MainTemplateActivity
@@ -62,13 +63,12 @@ class GameActivity : MainTemplateActivity() {
     override val confirmExitMessage: String by lazy { getString(R.string.confirm_exit_game_message) }
     override val confirmExitTitle: String by lazy { getString(R.string.confirm_exit_game_title) }
 
-    override fun actionOnBackConfirmed() = finish()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        with(findViewById<FrameLayout>(R.id.sudoku)) {
+        val gridViewLayout = findViewById<FrameLayout>(R.id.sudoku)
+        with(gridViewLayout) {
             val size = Point()
             windowManager.defaultDisplay.getSize(size)
 
@@ -81,15 +81,15 @@ class GameActivity : MainTemplateActivity() {
             }
 
             layoutParams = params
-            addView(gridView)
         }
+        gridViewLayout.addView(gridView)
+
 
         findViewById<FloatingActionButton>(R.id.fab_home).setOnClickListener {
             val i = Intent(this, MainActivity::class.java)
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(i)
         }
-
         findViewById<FloatingActionButton>(R.id.fab_new_game).setOnClickListener(gridView.restartClick)
 
         // buttons actions

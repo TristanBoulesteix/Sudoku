@@ -1,6 +1,5 @@
 package com.tboul.sudoku.views.activities.templates
 
-import android.app.ActivityOptions
 import android.app.AlertDialog
 import android.content.Intent
 import android.view.View
@@ -24,14 +23,5 @@ abstract class MainTemplateActivity : TemplateActivity() {
     }
 
     fun openHelpActivity(@Suppress("UNUSED_PARAMETER") view: View) =
-        startNewActivity(Intent(this, HelpActivity::class.java))
-
-    protected fun startNewActivity(gameActivity: Intent) {
-        val transition = ActivityOptions.makeCustomAnimation(
-            this,
-            R.anim.transition_start,
-            R.anim.trantion_end
-        ).toBundle()
-        startActivity(gameActivity, transition)
-    }
+        startActivity(Intent(this, HelpActivity::class.java))
 }
